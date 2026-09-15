@@ -1,0 +1,48 @@
+{
+  "created_utc": "20260915T220616093983Z",
+  "source_manifest": {
+    "path": "data/metadata/20260915T175338521414Z/historical_manifest.json",
+    "sha256": "bc5565ac5950fdf475ced61d88c32919908137ef074119b1517ff2799a857163"
+  },
+  "source_table": {
+    "path": "reports/tables/20260915T175338521414Z/historical_pass_plus.csv",
+    "sha256": "56322a59b9009d1020927aaba5e3fdb1cdff7a096808c07f5ea158c82d40b597"
+  },
+  "analysis_code": {
+    "path": "src/gridiron_value/historical_analysis.py",
+    "sha256": "5fc6dbd9d5caf10c9c6aa8c148da2193803516a3466b18d45e6df41be79832fa"
+  },
+  "min_dropbacks": 200,
+  "thresholds": [
+    100,
+    200,
+    300,
+    400
+  ],
+  "files": {
+    "season_leaderboards": {
+      "path": "reports/tables/historical_analysis_20260915T220616093983Z/season_leaderboards.csv",
+      "sha256": "393a75e12f32a10edc5098d0c9779113e3e21d23c33534733334e769176fb4dc"
+    },
+    "player_history": {
+      "path": "reports/tables/historical_analysis_20260915T220616093983Z/player_history.csv",
+      "sha256": "f2b4f76042e1548e47d9e847d7e01f12eb18aa88e8a32a4f299ed184bdb62373"
+    },
+    "player_window_summary": {
+      "path": "reports/tables/historical_analysis_20260915T220616093983Z/player_window_summary.csv",
+      "sha256": "baf600a19cbe935c3a00aa9699bc9864abd7a2f54d568548d5223b02f2591eda"
+    },
+    "threshold_summary": {
+      "path": "reports/tables/historical_analysis_20260915T220616093983Z/threshold_summary.csv",
+      "sha256": "4f51a7f411ea9c172b4ff3b01f14f3518c2a9f9e28d207fc2702e2ee53d5a497"
+    },
+    "threshold_leaderboards": {
+      "path": "reports/tables/historical_analysis_20260915T220616093983Z/threshold_leaderboards.csv",
+      "sha256": "d9a881f06409c5b62634ece4a677ef26b1a928fd26094b610bda278078a86dc2"
+    },
+    "report": {
+      "path": "reports/tables/historical_analysis_20260915T220616093983Z/report.md",
+      "sha256": "300cd6497525af5820b6cd408e628697c2b79f2b1f46dc40efd12d246cf0bdf1"
+    }
+  }
+}
