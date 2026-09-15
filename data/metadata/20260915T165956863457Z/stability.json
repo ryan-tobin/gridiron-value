@@ -1,0 +1,60 @@
+{
+  "games": 272,
+  "dropbacks": 19734,
+  "mse_reduction": 0.005790932497219631,
+  "conditional_percentile_95_interval": {
+    "low": 0.0006810051468754619,
+    "high": 0.010860047146807324
+  },
+  "games_improved": 158,
+  "games_worsened": 114,
+  "games_tied": 0,
+  "n_resamples": 10000,
+  "seed": 2026,
+  "run_id": "20260915T165956863457Z",
+  "source_adjustment_run_id": "20260915T165516168875Z",
+  "source_game_errors_sha256": "65aba13cd6b11c1428d726adc565bdd8e848ff75879992078e5912247f12b3ee",
+  "code_sha256": "596e4bb1ff9882e87535fbaa7e08d6bfb9f278aeff458455430cee1469be9e47",
+  "packages": {
+    "numpy": "2.5.3",
+    "polars": "1.44.2",
+    "scipy": "1.18.1"
+  },
+  "fold_summary": [
+    {
+      "fold": 0,
+      "games": 54,
+      "dropbacks": 3929,
+      "mse_reduction": 0.0046596167157810005
+    },
+    {
+      "fold": 1,
+      "games": 55,
+      "dropbacks": 3975,
+      "mse_reduction": 0.009211246364824727
+    },
+    {
+      "fold": 2,
+      "games": 54,
+      "dropbacks": 3927,
+      "mse_reduction": 0.00936679320214422
+    },
+    {
+      "fold": 3,
+      "games": 54,
+      "dropbacks": 3928,
+      "mse_reduction": 0.0028724640397869193
+    },
+    {
+      "fold": 4,
+      "games": 55,
+      "dropbacks": 3975,
+      "mse_reduction": 0.0028401227347288013
+    }
+  ],
+  "fold_report": {
+    "path": "reports/tables/20260915T165956863457Z/fold_stability.csv",
+    "sha256": "dc0d53228b289c9ec485451593ba3080daea75b32a71061dd01b2c140c5b1a32"
+  },
+  "interpretation": "Approximate paired game-resampling diagnostic conditional on fixed predictions and folds. Models are not refitted. Dependence across games sharing teams and overlapping training sets is not fully captured."
+}

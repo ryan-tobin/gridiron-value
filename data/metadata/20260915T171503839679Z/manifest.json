@@ -1,0 +1,102 @@
+{
+  "run_id": "20260915T171503839679Z",
+  "started_at_utc": "2026-09-15T17:15:03.839679+00:00",
+  "retrieved_at_utc": "2026-09-15T17:15:04.662676+00:00",
+  "season_requested": 2019,
+  "source": {
+    "repository": "https://github.com/nflverse/nflverse-data",
+    "release": "https://github.com/nflverse/nflverse-data/releases/tag/pbp",
+    "loader": "nflreadpy.load_pbp",
+    "cache_mode": "off"
+  },
+  "snapshot_description": "Unfiltered nflreadpy output serialized locally as Parquet. Checksums identify local files, not original upstream bytes.",
+  "files": {
+    "raw": {
+      "path": "data/raw/20260915T171503839679Z/pbp_2019.parquet",
+      "bytes": 12483935,
+      "sha256": "3878b8c99f5f3d977203b0e249b55ca913e59db3971420075ed35a0991610f6e"
+    },
+    "schema": {
+      "path": "data/metadata/20260915T171503839679Z/schema.csv",
+      "sha256": "1e441faf8beb8dcfc2467ad2283d533740070ed30ea264b0e7071d71c8a9f85b"
+    }
+  },
+  "environment": {
+    "python": "3.14.3",
+    "packages": {
+      "gridiron-value": "0.0.0",
+      "nflreadpy": "0.1.5",
+      "polars": "1.44.2",
+      "numpy": "2.5.3",
+      "scipy": "1.18.1",
+      "scikit-learn": "1.9.1",
+      "matplotlib": "3.11.2"
+    }
+  },
+  "audit": {
+    "rows": 47260,
+    "columns": 372,
+    "games": 267,
+    "rows_with_missing_game_or_play_id": 0,
+    "duplicate_key_rows_beyond_first": 0,
+    "season_summary": [
+      {
+        "season": 2019,
+        "season_type": "POST",
+        "rows": 1921,
+        "games": 11
+      },
+      {
+        "season": 2019,
+        "season_type": "REG",
+        "rows": 45339,
+        "games": 256
+      }
+    ],
+    "play_type_counts": [
+      {
+        "play_type": null,
+        "rows": 1407
+      },
+      {
+        "play_type": "extra_point",
+        "rows": 1265
+      },
+      {
+        "play_type": "field_goal",
+        "rows": 1018
+      },
+      {
+        "play_type": "kickoff",
+        "rows": 2716
+      },
+      {
+        "play_type": "no_play",
+        "rows": 4598
+      },
+      {
+        "play_type": "pass",
+        "rows": 19905
+      },
+      {
+        "play_type": "punt",
+        "rows": 2244
+      },
+      {
+        "play_type": "qb_kneel",
+        "rows": 421
+      },
+      {
+        "play_type": "qb_spike",
+        "rows": 78
+      },
+      {
+        "play_type": "run",
+        "rows": 13608
+      }
+    ],
+    "regular_season_flagged_dropbacks": 19922,
+    "flagged_dropbacks_with_invalid_epa": 1,
+    "flagged_dropbacks_with_missing_passer_id": 784
+  }
+}

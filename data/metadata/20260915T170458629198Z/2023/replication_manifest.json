@@ -1,0 +1,103 @@
+{
+  "batch_id": "20260915T170458629198Z",
+  "season": 2023,
+  "source_raw_run_id": "20260915T170502038669Z",
+  "source_raw_manifest": "data/metadata/20260915T170502038669Z/manifest.json",
+  "source_raw_sha256": "19fc2ce8abb85be47fad16ceff178c67d6581309e87d53bb70c4531373867b1e",
+  "cohort_version": "0.1.0",
+  "exclusions": [
+    {
+      "rule": "regular_season",
+      "before": 49665,
+      "excluded": 2266,
+      "remaining": 47399
+    },
+    {
+      "rule": "flagged_dropback",
+      "before": 47399,
+      "excluded": 26629,
+      "remaining": 20770
+    },
+    {
+      "rule": "not_two_point_attempt",
+      "before": 20770,
+      "excluded": 77,
+      "remaining": 20693
+    },
+    {
+      "rule": "not_spike",
+      "before": 20693,
+      "excluded": 0,
+      "remaining": 20693
+    },
+    {
+      "rule": "not_kneel",
+      "before": 20693,
+      "excluded": 0,
+      "remaining": 20693
+    },
+    {
+      "rule": "supported_play_type",
+      "before": 20693,
+      "excluded": 0,
+      "remaining": 20693
+    },
+    {
+      "rule": "finite_epa",
+      "before": 20693,
+      "excluded": 0,
+      "remaining": 20693
+    }
+  ],
+  "result": {
+    "season": 2023,
+    "games": 272,
+    "dropbacks": 20693,
+    "identity_fallbacks": 1,
+    "league_mean_mse": 2.5504397435954944,
+    "offense_only_mse": 2.54237184439291,
+    "offense_defense_mse": 2.5411215898529695,
+    "mse_reduction": 0.001250254539940432,
+    "relative_reduction_pct": 0.04917669862879475,
+    "conditional_interval_low": -0.002794017253329084,
+    "conditional_interval_high": 0.005282008444747152,
+    "games_improved": 146,
+    "folds_improved": 4
+  },
+  "stability": {
+    "games": 272,
+    "dropbacks": 20693,
+    "mse_reduction": 0.0012502545399404625,
+    "conditional_percentile_95_interval": {
+      "low": -0.002794017253329084,
+      "high": 0.005282008444747152
+    },
+    "games_improved": 146,
+    "games_worsened": 126,
+    "games_tied": 0,
+    "n_resamples": 10000,
+    "seed": 2026
+  },
+  "files": {
+    "cohort": {
+      "path": "data/processed/20260915T170458629198Z/2023/dropbacks.parquet",
+      "sha256": "fd34de953f24214b01fa8fc624b4eef88328087ae7a807e40b0b8662d7aad126"
+    },
+    "predictions": {
+      "path": "data/interim/20260915T170458629198Z/2023/held_out_predictions.parquet",
+      "sha256": "81328c6aba68af9b754a68b259e27afc907c4629d965ecf79df29645ef0719be"
+    },
+    "scores": {
+      "path": "reports/tables/20260915T170458629198Z/2023/model_scores.csv",
+      "sha256": "b4784507186e1ccefbda8360d3539e7f71f8076d8cffdb9be8f4f462711a87a6"
+    },
+    "game_errors": {
+      "path": "reports/tables/20260915T170458629198Z/2023/game_errors.csv",
+      "sha256": "2024fb9d755e408d4e27d42a7b1044032f52f17b6bbc6ba0f74db0abea35f00c"
+    },
+    "fold_gains": {
+      "path": "reports/tables/20260915T170458629198Z/2023/fold_gains.csv",
+      "sha256": "f0c5731a79e62cce582827335def4f90221aaa206e78827e69950c817bc7b310"
+    }
+  }
+}

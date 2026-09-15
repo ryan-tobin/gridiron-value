@@ -1,0 +1,179 @@
+{
+  "run_id": "20260915T171117015924Z",
+  "purpose": "Exploratory defensive-penalty sensitivity analysis",
+  "offense_alpha": 100.0,
+  "defense_alphas": [
+    100.0,
+    1000.0
+  ],
+  "folds": 5,
+  "evaluation": "Same within-season game-grouped folds for each setting",
+  "packages": {
+    "numpy": "2.5.3",
+    "polars": "1.44.2",
+    "scikit-learn": "1.9.1"
+  },
+  "code_sha256": {
+    "adjustment.py": "5e177f1999f411711ec38517d67d4eb36b8795bcac3b95f6393046f58e73c2f6",
+    "shrinkage.py": "5570a45c1c523d4bb15c6af281b15d9f5e10f11f2f0711b52e79b485bb3e124a"
+  },
+  "runs": [
+    {
+      "season": 2020,
+      "defense_alpha": 100.0,
+      "dropbacks": 19932,
+      "offense_only_mse": 2.4785786329061703,
+      "offense_defense_mse": 2.4750328276757956,
+      "mse_reduction": 0.0035458052303747323,
+      "folds_improved": 4,
+      "source_manifest": "data/metadata/20260915T170458629198Z/2020/replication_manifest.json",
+      "source_cohort_sha256": "ef0d16cece18d06e93ba2989998ee85f390c2a6814671ac9ae6b3f772cf6d569",
+      "predictions": "data/interim/20260915T171117015924Z/predictions_2020_defense_100.parquet",
+      "predictions_sha256": "468f6e0d92fa2a799f74247db25726a1d464d93db5c019d4760c03b625639c9d"
+    },
+    {
+      "season": 2020,
+      "defense_alpha": 1000.0,
+      "dropbacks": 19932,
+      "offense_only_mse": 2.4785786329061703,
+      "offense_defense_mse": 2.475250632994128,
+      "mse_reduction": 0.0033279999120421344,
+      "folds_improved": 5,
+      "source_manifest": "data/metadata/20260915T170458629198Z/2020/replication_manifest.json",
+      "source_cohort_sha256": "ef0d16cece18d06e93ba2989998ee85f390c2a6814671ac9ae6b3f772cf6d569",
+      "predictions": "data/interim/20260915T171117015924Z/predictions_2020_defense_1000.parquet",
+      "predictions_sha256": "d7e3eb1bf66937df89fc9e48ef433f42fca6d11d5f11c11c23781c5d18e93fa5"
+    },
+    {
+      "season": 2021,
+      "defense_alpha": 100.0,
+      "dropbacks": 20799,
+      "offense_only_mse": 2.5122789299357295,
+      "offense_defense_mse": 2.515981402316572,
+      "mse_reduction": -0.0037024723808425364,
+      "folds_improved": 1,
+      "source_manifest": "data/metadata/20260915T170458629198Z/2021/replication_manifest.json",
+      "source_cohort_sha256": "dbfb57d7a3c2f4dc1b7774dc832bba6595ec39302b645f52577bb0a0a0941c79",
+      "predictions": "data/interim/20260915T171117015924Z/predictions_2021_defense_100.parquet",
+      "predictions_sha256": "8acaa166310fed4c68db8b08590b2493af1e4bc87489b85a5e1a329d2a1a7701"
+    },
+    {
+      "season": 2021,
+      "defense_alpha": 1000.0,
+      "dropbacks": 20799,
+      "offense_only_mse": 2.5122789299357295,
+      "offense_defense_mse": 2.5120109163657567,
+      "mse_reduction": 0.0002680135699728581,
+      "folds_improved": 2,
+      "source_manifest": "data/metadata/20260915T170458629198Z/2021/replication_manifest.json",
+      "source_cohort_sha256": "dbfb57d7a3c2f4dc1b7774dc832bba6595ec39302b645f52577bb0a0a0941c79",
+      "predictions": "data/interim/20260915T171117015924Z/predictions_2021_defense_1000.parquet",
+      "predictions_sha256": "dee4275bc179efe251d8e4b1bf85aeb88796cd9cbaa85f3b20e8145c300b28b3"
+    },
+    {
+      "season": 2022,
+      "defense_alpha": 100.0,
+      "dropbacks": 20210,
+      "offense_only_mse": 2.4513208844181067,
+      "offense_defense_mse": 2.4530356554559405,
+      "mse_reduction": -0.0017147710378337955,
+      "folds_improved": 2,
+      "source_manifest": "data/metadata/20260915T170458629198Z/2022/replication_manifest.json",
+      "source_cohort_sha256": "1fc6923eaa2d868824ad87ffc1b6da6868d1156b508d6b8f7af95ca173682525",
+      "predictions": "data/interim/20260915T171117015924Z/predictions_2022_defense_100.parquet",
+      "predictions_sha256": "dd9f5a8b1d57c4585b5f29050b73d809327bad86ec6044379b7ece9313b86dc9"
+    },
+    {
+      "season": 2022,
+      "defense_alpha": 1000.0,
+      "dropbacks": 20210,
+      "offense_only_mse": 2.4513208844181067,
+      "offense_defense_mse": 2.450885888300181,
+      "mse_reduction": 0.00043499611792574555,
+      "folds_improved": 4,
+      "source_manifest": "data/metadata/20260915T170458629198Z/2022/replication_manifest.json",
+      "source_cohort_sha256": "1fc6923eaa2d868824ad87ffc1b6da6868d1156b508d6b8f7af95ca173682525",
+      "predictions": "data/interim/20260915T171117015924Z/predictions_2022_defense_1000.parquet",
+      "predictions_sha256": "4c4cdd24ea1fe4eddf7956e96e9eecfac82369ede1e5d7518baef6d70ed3de17"
+    },
+    {
+      "season": 2023,
+      "defense_alpha": 100.0,
+      "dropbacks": 20693,
+      "offense_only_mse": 2.54237184439291,
+      "offense_defense_mse": 2.5411215898529695,
+      "mse_reduction": 0.001250254539940432,
+      "folds_improved": 4,
+      "source_manifest": "data/metadata/20260915T170458629198Z/2023/replication_manifest.json",
+      "source_cohort_sha256": "fd34de953f24214b01fa8fc624b4eef88328087ae7a807e40b0b8662d7aad126",
+      "predictions": "data/interim/20260915T171117015924Z/predictions_2023_defense_100.parquet",
+      "predictions_sha256": "81328c6aba68af9b754a68b259e27afc907c4629d965ecf79df29645ef0719be"
+    },
+    {
+      "season": 2023,
+      "defense_alpha": 1000.0,
+      "dropbacks": 20693,
+      "offense_only_mse": 2.54237184439291,
+      "offense_defense_mse": 2.5401476338484965,
+      "mse_reduction": 0.002224210544413463,
+      "folds_improved": 5,
+      "source_manifest": "data/metadata/20260915T170458629198Z/2023/replication_manifest.json",
+      "source_cohort_sha256": "fd34de953f24214b01fa8fc624b4eef88328087ae7a807e40b0b8662d7aad126",
+      "predictions": "data/interim/20260915T171117015924Z/predictions_2023_defense_1000.parquet",
+      "predictions_sha256": "6b70b9453aa39222b84312b523055453f7056f2d4d31dc598250245ea1abbf04"
+    },
+    {
+      "season": 2024,
+      "defense_alpha": 100.0,
+      "dropbacks": 20116,
+      "offense_only_mse": 2.464851700265566,
+      "offense_defense_mse": 2.469319313249395,
+      "mse_reduction": -0.004467612983829028,
+      "folds_improved": 0,
+      "source_manifest": "data/metadata/20260915T170458629198Z/2024/replication_manifest.json",
+      "source_cohort_sha256": "b1557aac9e08f59dbeb1b32a2ba29b13029b64be9cdec64e5a18b1b6ffa9148f",
+      "predictions": "data/interim/20260915T171117015924Z/predictions_2024_defense_100.parquet",
+      "predictions_sha256": "c342c69955b361ce914659f46d24f4523a888f11866fa18373ab9a37fe98701b"
+    },
+    {
+      "season": 2024,
+      "defense_alpha": 1000.0,
+      "dropbacks": 20116,
+      "offense_only_mse": 2.464851700265566,
+      "offense_defense_mse": 2.4651075870337604,
+      "mse_reduction": -0.0002558867681945465,
+      "folds_improved": 3,
+      "source_manifest": "data/metadata/20260915T170458629198Z/2024/replication_manifest.json",
+      "source_cohort_sha256": "b1557aac9e08f59dbeb1b32a2ba29b13029b64be9cdec64e5a18b1b6ffa9148f",
+      "predictions": "data/interim/20260915T171117015924Z/predictions_2024_defense_1000.parquet",
+      "predictions_sha256": "8e96ec1bf200e4922292b0d997fdf76320fa0e31eaa323bfc6290ef33f643121"
+    },
+    {
+      "season": 2025,
+      "defense_alpha": 100.0,
+      "dropbacks": 19734,
+      "offense_only_mse": 2.5099887904197544,
+      "offense_defense_mse": 2.504197857922535,
+      "mse_reduction": 0.005790932497219625,
+      "folds_improved": 5,
+      "source_manifest": "data/metadata/20260915T165043591269Z/cohort_manifest.json",
+      "source_cohort_sha256": "0c92f14e4b2898297c19576e8a7248de51b87153cb9ef6e06fb0a224acac3fdf",
+      "predictions": "data/interim/20260915T171117015924Z/predictions_2025_defense_100.parquet",
+      "predictions_sha256": "7d7b97655461a3735712c38a98c400ec044aaf74cd0033aea5e41734978bca07"
+    },
+    {
+      "season": 2025,
+      "defense_alpha": 1000.0,
+      "dropbacks": 19734,
+      "offense_only_mse": 2.5099887904197544,
+      "offense_defense_mse": 2.5055266209560156,
+      "mse_reduction": 0.004462169463738785,
+      "folds_improved": 5,
+      "source_manifest": "data/metadata/20260915T165043591269Z/cohort_manifest.json",
+      "source_cohort_sha256": "0c92f14e4b2898297c19576e8a7248de51b87153cb9ef6e06fb0a224acac3fdf",
+      "predictions": "data/interim/20260915T171117015924Z/predictions_2025_defense_1000.parquet",
+      "predictions_sha256": "4e12a23306998b0bb290cb1b8229a1bbd034736b5615f390cbb8631e1a53c9c2"
+    }
+  ],
+  "status": "completed"
+}

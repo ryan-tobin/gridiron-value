@@ -1,0 +1,37 @@
+{
+  "batch_id": "20260915T170458629198Z",
+  "seasons_requested": [
+    2020,
+    2021,
+    2022,
+    2023,
+    2024
+  ],
+  "alpha": 100.0,
+  "folds": 5,
+  "bootstrap_resamples": 10000,
+  "bootstrap_seed": 2026,
+  "evaluation": "Separate within-season game-grouped evaluations",
+  "packages": {
+    "nflreadpy": "0.1.5",
+    "numpy": "2.5.3",
+    "polars": "1.44.2",
+    "scipy": "1.18.1",
+    "scikit-learn": "1.9.1"
+  },
+  "code_sha256": {
+    "data.py": "ecb72a237daf258e4ed71c9d9a66302581351ee2955e07a74d1e2ebb1359125b",
+    "cohort.py": "d65e798962d5f4c96d725dabfee8494dd5b48fb801b89c95b1bb35a3f1afe0f1",
+    "adjustment.py": "02fcacbe75c2a4f17a44d7515841507f9a56854fc3b791763802d1f93f6bef13",
+    "uncertainty.py": "596e4bb1ff9882e87535fbaa7e08d6bfb9f278aeff458455430cee1469be9e47",
+    "replicate.py": "c18fd576a55d4213d6da95bab0e83dc393e115a0f44a364912d2a2125e99ac14"
+  },
+  "completed": [
+    2020,
+    2021,
+    2022,
+    2023,
+    2024
+  ],
+  "status": "completed"
+}

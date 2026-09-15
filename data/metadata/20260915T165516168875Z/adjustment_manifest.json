@@ -1,0 +1,59 @@
+{
+  "run_id": "20260915T165516168875Z",
+  "source_cohort_run_id": "20260915T165043591269Z",
+  "source_cohort_sha256": "0c92f14e4b2898297c19576e8a7248de51b87153cb9ef6e06fb0a224acac3fdf",
+  "model": "Additive team offense and defense ridge regression",
+  "alpha": 100.0,
+  "folds": 5,
+  "split_method": "GroupKFold grouped by game_id",
+  "evaluation": "Retrospective held-out games within one season",
+  "error_weighting": "Each eligible dropback has equal weight",
+  "rows": 19734,
+  "games": 272,
+  "season": 2025,
+  "scores": [
+    {
+      "model": "league_mean",
+      "mse": 2.5153193000182212,
+      "rmse": 1.585975819493545
+    },
+    {
+      "model": "offense_only",
+      "mse": 2.5099887904197544,
+      "rmse": 1.58429441405938
+    },
+    {
+      "model": "offense_defense",
+      "mse": 2.504197857922535,
+      "rmse": 1.582465752527534
+    }
+  ],
+  "mse_reduction_from_adding_defense": 0.005790932497219625,
+  "code_sha256": "02fcacbe75c2a4f17a44d7515841507f9a56854fc3b791763802d1f93f6bef13",
+  "packages": {
+    "numpy": "2.5.3",
+    "polars": "1.44.2",
+    "scikit-learn": "1.9.1"
+  },
+  "files": {
+    "predictions": {
+      "path": "data/interim/20260915T165516168875Z/held_out_predictions.parquet",
+      "sha256": "7d7b97655461a3735712c38a98c400ec044aaf74cd0033aea5e41734978bca07"
+    },
+    "scores": {
+      "path": "reports/tables/20260915T165516168875Z/model_scores.csv",
+      "sha256": "cba5714745acfd523901ca302e030025253e641dbbd81f3ce7be760c24e92d26"
+    },
+    "game_errors": {
+      "path": "reports/tables/20260915T165516168875Z/game_errors.csv",
+      "sha256": "65aba13cd6b11c1428d726adc565bdd8e848ff75879992078e5912247f12b3ee"
+    }
+  },
+  "limitations": [
+    "Fixed pilot regularization; not optimized.",
+    "Team effects do not isolate individual quarterback skill.",
+    "No additional game-context covariates yet.",
+    "Within-season evaluation is not chronological forecasting.",
+    "Existing upstream EPA values are treated as a fixed target."
+  ]
+}

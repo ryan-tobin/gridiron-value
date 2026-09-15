@@ -1,0 +1,106 @@
+{
+  "batch_id": "20260915T171500507653Z",
+  "season": 2017,
+  "source_raw_run_id": "20260915T171500510195Z",
+  "source_raw_manifest": "data/metadata/20260915T171500510195Z/manifest.json",
+  "source_raw_sha256": "0166785545b15de785075a154668996b8cb71294f7a7c3d9acbf4ae90a99f2dc",
+  "cohort_version": "0.1.0",
+  "exclusions": [
+    {
+      "rule": "regular_season",
+      "before": 47245,
+      "excluded": 1977,
+      "remaining": 45268
+    },
+    {
+      "rule": "flagged_dropback",
+      "before": 45268,
+      "excluded": 25854,
+      "remaining": 19414
+    },
+    {
+      "rule": "not_two_point_attempt",
+      "before": 19414,
+      "excluded": 58,
+      "remaining": 19356
+    },
+    {
+      "rule": "not_spike",
+      "before": 19356,
+      "excluded": 0,
+      "remaining": 19356
+    },
+    {
+      "rule": "not_kneel",
+      "before": 19356,
+      "excluded": 0,
+      "remaining": 19356
+    },
+    {
+      "rule": "supported_play_type",
+      "before": 19356,
+      "excluded": 0,
+      "remaining": 19356
+    },
+    {
+      "rule": "finite_epa",
+      "before": 19356,
+      "excluded": 0,
+      "remaining": 19356
+    }
+  ],
+  "result": {
+    "season": 2017,
+    "games": 256,
+    "dropbacks": 19356,
+    "identity_fallbacks": 0,
+    "league_mean_mse": 2.5218582462507,
+    "offense_only_mse": 2.5186462608867264,
+    "offense_defense_mse": 2.5163792795345157,
+    "mse_reduction": 0.0022669813522107063,
+    "relative_reduction_pct": 0.09000792955389385,
+    "conditional_interval_low": 0.0006782716199656949,
+    "conditional_interval_high": 0.003869765759789616,
+    "games_improved": 146,
+    "folds_improved": 5
+  },
+  "stability": {
+    "games": 256,
+    "dropbacks": 19356,
+    "mse_reduction": 0.0022669813522102292,
+    "conditional_percentile_95_interval": {
+      "low": 0.0006782716199656949,
+      "high": 0.003869765759789616
+    },
+    "games_improved": 146,
+    "games_worsened": 110,
+    "games_tied": 0,
+    "n_resamples": 10000,
+    "seed": 2026
+  },
+  "offense_alpha": 100.0,
+  "defense_alpha": 1000.0,
+  "folds": 5,
+  "files": {
+    "cohort": {
+      "path": "data/processed/20260915T171500507653Z/2017/dropbacks.parquet",
+      "sha256": "db28c569f358876d765c446459916ead0a4da1b5be154be68d4d847060d934f8"
+    },
+    "predictions": {
+      "path": "data/interim/20260915T171500507653Z/2017/held_out_predictions.parquet",
+      "sha256": "abbd783ab8b4f21e0934572ee273cd37bcc7b2870b8ad80c3bdc6cba18f8b91f"
+    },
+    "scores": {
+      "path": "reports/tables/20260915T171500507653Z/2017/model_scores.csv",
+      "sha256": "5c55b4fc692ef0d1af20b79eb16eca837d42856c60fc72e20456bc037a80e972"
+    },
+    "game_errors": {
+      "path": "reports/tables/20260915T171500507653Z/2017/game_errors.csv",
+      "sha256": "3d46518a5585860d56ce32058ff01bc42e0e4953a7ac54b07e3b1f455fcdf259"
+    },
+    "fold_gains": {
+      "path": "reports/tables/20260915T171500507653Z/2017/fold_gains.csv",
+      "sha256": "556aa446f032d0bf6b7247e02e9dc921be81ec8af9a28878a8a1b0b714c84ece"
+    }
+  }
+}

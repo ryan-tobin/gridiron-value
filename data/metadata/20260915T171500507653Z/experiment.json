@@ -1,0 +1,43 @@
+{
+  "batch_id": "20260915T171500507653Z",
+  "seasons_requested": [
+    2017,
+    2018,
+    2019
+  ],
+  "offense_alpha": 100.0,
+  "defense_alpha": 1000.0,
+  "candidate": "Separate penalties: offense 100, defense 1000",
+  "development_seasons": [
+    2020,
+    2021,
+    2022,
+    2023,
+    2024,
+    2025
+  ],
+  "folds": 5,
+  "bootstrap_resamples": 10000,
+  "bootstrap_seed": 2026,
+  "evaluation": "Separate within-season game-grouped evaluations",
+  "packages": {
+    "nflreadpy": "0.1.5",
+    "numpy": "2.5.3",
+    "polars": "1.44.2",
+    "scipy": "1.18.1",
+    "scikit-learn": "1.9.1"
+  },
+  "code_sha256": {
+    "data.py": "ecb72a237daf258e4ed71c9d9a66302581351ee2955e07a74d1e2ebb1359125b",
+    "cohort.py": "d65e798962d5f4c96d725dabfee8494dd5b48fb801b89c95b1bb35a3f1afe0f1",
+    "adjustment.py": "5e177f1999f411711ec38517d67d4eb36b8795bcac3b95f6393046f58e73c2f6",
+    "uncertainty.py": "596e4bb1ff9882e87535fbaa7e08d6bfb9f278aeff458455430cee1469be9e47",
+    "replicate.py": "5147efe7d663648b8db62d915e27ddfef9d8689cd09aaa34f726f9a90b68b1ce"
+  },
+  "completed": [
+    2017,
+    2018,
+    2019
+  ],
+  "status": "completed"
+}
