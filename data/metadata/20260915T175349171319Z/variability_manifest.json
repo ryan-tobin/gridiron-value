@@ -1,0 +1,26 @@
+{
+  "run_id": "20260915T175349171319Z",
+  "source_schedule_run_id": "20260915T175348684992Z",
+  "source_scored_plays_sha256": "07e6ddde0aeeedb25dce50d6c2fc627095f38b5985ab5aa902b90bc8fa73322b",
+  "min_dropbacks": 100,
+  "resamples": 10000,
+  "seed": 2026,
+  "code_sha256": "4cc67175afcd17c018f209b6245f03cd61e428126755bdd1d8b59784ef57b8a0",
+  "packages": {
+    "numpy": "2.5.3",
+    "polars": "1.44.2"
+  },
+  "report": {
+    "path": "reports/tables/20260915T175349171319Z/player_game_variability.csv",
+    "sha256": "7f9b822eae5eaf4e205e07bc0b0b31abada2c457237251ef1ff5a6de4b156f36"
+  },
+  "interpretation": [
+    "Resamples each player's observed games with replacement.",
+    "Pairs game EPA totals with their dropback counts.",
+    "Schedule adjustments remain fixed.",
+    "Ranges describe conditional resampled-rate variability.",
+    "Ranges do not quantify uncertainty in realized season totals.",
+    "No model-refitting or isolated-player-skill uncertainty.",
+    "Individual ranges do not constitute pairwise ranking tests."
+  ]
+}

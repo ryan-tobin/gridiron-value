@@ -1,0 +1,32 @@
+Reference participants: 94
+Reference dropbacks: 19,356
+League adjusted EPA/dropback: 0.005666
+Weighted SD of player rates: 0.198207
+
+Experimental Pass+ leaderboard:
+Resampled bounds describe game variability, not isolated skill.
+shape: (15, 7)
+┌──────────────────┬───────┬───────────┬───────┬───────────────┬────────────────┬─────────────────┐
+│ player           ┆ games ┆ dropbacks ┆ Pass+ ┆ resampled_low ┆ resampled_high ┆ adjusted_EPA_AA │
+│ ---              ┆ ---   ┆ ---       ┆ ---   ┆ ---           ┆ ---            ┆ ---             │
+│ str              ┆ i64   ┆ i64       ┆ i64   ┆ i64           ┆ i64            ┆ f64             │
+╞══════════════════╪═══════╪═══════════╪═══════╪═══════════════╪════════════════╪═════════════════╡
+│ J.Garoppolo      ┆ 6     ┆ 188       ┆ 125   ┆ 121           ┆ 133            ┆ 63.1            │
+│ C.Wentz          ┆ 13    ┆ 498       ┆ 116   ┆ 106           ┆ 126            ┆ 103.8           │
+│ T.Brady          ┆ 16    ┆ 622       ┆ 116   ┆ 107           ┆ 124            ┆ 128.8           │
+│ A.Smith          ┆ 15    ┆ 572       ┆ 113   ┆ 102           ┆ 124            ┆ 99.8            │
+│ P.Rivers         ┆ 16    ┆ 593       ┆ 113   ┆ 103           ┆ 124            ┆ 103.4           │
+│ J.Goff           ┆ 15    ┆ 510       ┆ 112   ┆ 102           ┆ 124            ┆ 82.6            │
+│ D.Watson         ┆ 7     ┆ 240       ┆ 112   ┆ 93            ┆ 128            ┆ 38.5            │
+│ B.Roethlisberger ┆ 15    ┆ 589       ┆ 111   ┆ 103           ┆ 118            ┆ 87.4            │
+│ D.Brees          ┆ 16    ┆ 558       ┆ 111   ┆ 103           ┆ 119            ┆ 82.2            │
+│ M.Ryan           ┆ 16    ┆ 567       ┆ 111   ┆ 102           ┆ 119            ┆ 81.3            │
+│ C.Keenum         ┆ 15    ┆ 522       ┆ 109   ┆ 99            ┆ 120            ┆ 62.9            │
+│ A.Rodgers        ┆ 7     ┆ 275       ┆ 109   ┆ 101           ┆ 119            ┆ 32.6            │
+│ J.Winston        ┆ 13    ┆ 495       ┆ 107   ┆ 97            ┆ 116            ┆ 43.9            │
+│ M.Stafford       ┆ 16    ┆ 629       ┆ 105   ┆ 95            ┆ 117            ┆ 41.6            │
+│ R.Wilson         ┆ 16    ┆ 645       ┆ 105   ┆ 95            ┆ 112            ┆ 38.8            │
+└──────────────────┴───────┴───────────┴───────┴───────────────┴────────────────┴─────────────────┘
+
+Report: reports/tables/20260915T175341400908Z/pass_plus_leaderboard.csv
+Manifest: data/metadata/20260915T175341400908Z/pass_plus_manifest.json

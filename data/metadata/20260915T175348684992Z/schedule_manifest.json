@@ -1,0 +1,42 @@
+{
+  "run_id": "20260915T175348684992Z",
+  "status": "experimental",
+  "source_manifest": "data/metadata/20260915T175347520081Z/cohort_manifest.json",
+  "source_cohort_sha256": "dbfb57d7a3c2f4dc1b7774dc832bba6595ec39302b645f52577bb0a0a0941c79",
+  "season": 2021,
+  "dropbacks": 20799,
+  "offense_alpha": 100.0,
+  "defense_alpha": 1000.0,
+  "folds": 5,
+  "opponent_reference": 4.5216163741530326e-05,
+  "schedule_adjustment_sum": 1.3322676295501878e-15,
+  "code_sha256": {
+    "schedule.py": "8c7fc992d6f0d35254758fbe02c5c8fde3b5616f61ac6e1728e60335856326ca",
+    "adjustment.py": "5e177f1999f411711ec38517d67d4eb36b8795bcac3b95f6393046f58e73c2f6",
+    "baseline.py": "0e1301ccac1653011180acca62be727082b4b025cd30f0129af79ccbb34c898d"
+  },
+  "packages": {
+    "numpy": "2.5.3",
+    "polars": "1.44.2",
+    "scikit-learn": "1.9.1"
+  },
+  "files": {
+    "scored_plays": {
+      "path": "data/processed/20260915T175348684992Z/schedule_adjusted_dropbacks.parquet",
+      "sha256": "07e6ddde0aeeedb25dce50d6c2fc627095f38b5985ab5aa902b90bc8fa73322b"
+    },
+    "leaderboard": {
+      "path": "reports/tables/20260915T175348684992Z/opponent_adjusted_leaderboard.csv",
+      "sha256": "97ef8bfe53cc745fe4901f044d259b72d0a10665a0fc3556f52974a2e376fa6e"
+    }
+  },
+  "interpretation": [
+    "Observed EPA plus a centered defensive-opponent correction.",
+    "Each defensive term is estimated without its own game.",
+    "Final league centering uses all eligible season dropbacks.",
+    "Only the defensive contribution is removed.",
+    "Supporting-offense contributions remain.",
+    "No player-specific uncertainty intervals are available yet.",
+    "This is retrospective production, not a forecasting score."
+  ]
+}

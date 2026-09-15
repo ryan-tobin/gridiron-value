@@ -1,0 +1,32 @@
+Reference participants: 101
+Reference dropbacks: 19,734
+League adjusted EPA/dropback: 0.043145
+Weighted SD of player rates: 0.187506
+
+Experimental Pass+ leaderboard:
+Resampled bounds describe game variability, not isolated skill.
+shape: (15, 7)
+┌────────────┬───────┬───────────┬───────┬───────────────┬────────────────┬─────────────────┐
+│ player     ┆ games ┆ dropbacks ┆ Pass+ ┆ resampled_low ┆ resampled_high ┆ adjusted_EPA_AA │
+│ ---        ┆ ---   ┆ ---       ┆ ---   ┆ ---           ┆ ---            ┆ ---             │
+│ str        ┆ i64   ┆ i64       ┆ i64   ┆ i64           ┆ i64            ┆ f64             │
+╞════════════╪═══════╪═══════════╪═══════╪═══════════════╪════════════════╪═════════════════╡
+│ D.Maye     ┆ 17    ┆ 601       ┆ 120   ┆ 111           ┆ 132            ┆ 152.6           │
+│ J.Love     ┆ 15    ┆ 483       ┆ 117   ┆ 108           ┆ 126            ┆ 101.9           │
+│ M.Stafford ┆ 17    ┆ 624       ┆ 114   ┆ 105           ┆ 123            ┆ 110.7           │
+│ B.Purdy    ┆ 9     ┆ 313       ┆ 114   ┆ 98            ┆ 129            ┆ 55.2            │
+│ P.Mahomes  ┆ 14    ┆ 586       ┆ 111   ┆ 101           ┆ 120            ┆ 81.8            │
+│ J.Goff     ┆ 17    ┆ 619       ┆ 111   ┆ 100           ┆ 122            ┆ 84.2            │
+│ J.Allen    ┆ 16    ┆ 547       ┆ 110   ┆ 100           ┆ 120            ┆ 68.1            │
+│ D.Prescott ┆ 17    ┆ 654       ┆ 110   ┆ 101           ┆ 118            ┆ 78.1            │
+│ D.Jones    ┆ 13    ┆ 426       ┆ 109   ┆ 97            ┆ 121            ┆ 49.1            │
+│ M.Jones    ┆ 8     ┆ 310       ┆ 108   ┆ 98            ┆ 119            ┆ 31.0            │
+│ S.Darnold  ┆ 17    ┆ 514       ┆ 107   ┆ 94            ┆ 122            ┆ 46.9            │
+│ C.Stroud   ┆ 14    ┆ 468       ┆ 106   ┆ 96            ┆ 118            ┆ 37.0            │
+│ B.Nix      ┆ 17    ┆ 669       ┆ 106   ┆ 98            ┆ 113            ┆ 46.4            │
+│ C.Williams ┆ 17    ┆ 633       ┆ 105   ┆ 99            ┆ 112            ┆ 41.2            │
+│ J.Burrow   ┆ 8     ┆ 284       ┆ 104   ┆ 86            ┆ 123            ┆ 15.2            │
+└────────────┴───────┴───────────┴───────┴───────────────┴────────────────┴─────────────────┘
+
+Report: reports/tables/20260915T175358573019Z/pass_plus_leaderboard.csv
+Manifest: data/metadata/20260915T175358573019Z/pass_plus_manifest.json

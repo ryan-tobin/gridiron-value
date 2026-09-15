@@ -1,0 +1,32 @@
+Reference participants: 116
+Reference dropbacks: 20,693
+League adjusted EPA/dropback: -0.001131
+Weighted SD of player rates: 0.181656
+
+Experimental Pass+ leaderboard:
+Resampled bounds describe game variability, not isolated skill.
+shape: (15, 7)
+┌──────────────┬───────┬───────────┬───────┬───────────────┬────────────────┬─────────────────┐
+│ player       ┆ games ┆ dropbacks ┆ Pass+ ┆ resampled_low ┆ resampled_high ┆ adjusted_EPA_AA │
+│ ---          ┆ ---   ┆ ---       ┆ ---   ┆ ---           ┆ ---            ┆ ---             │
+│ str          ┆ i64   ┆ i64       ┆ i64   ┆ i64           ┆ i64            ┆ f64             │
+╞══════════════╪═══════╪═══════════╪═══════╪═══════════════╪════════════════╪═════════════════╡
+│ B.Purdy      ┆ 16    ┆ 486       ┆ 126   ┆ 111           ┆ 141            ┆ 153.0           │
+│ D.Prescott   ┆ 17    ┆ 656       ┆ 116   ┆ 107           ┆ 125            ┆ 129.1           │
+│ T.Tagovailoa ┆ 17    ┆ 603       ┆ 115   ┆ 103           ┆ 128            ┆ 111.9           │
+│ J.Allen      ┆ 17    ┆ 649       ┆ 114   ┆ 106           ┆ 122            ┆ 109.1           │
+│ J.Browning   ┆ 9     ┆ 283       ┆ 112   ┆ 98            ┆ 126            ┆ 41.2            │
+│ J.Love       ┆ 17    ┆ 631       ┆ 110   ┆ 100           ┆ 121            ┆ 80.2            │
+│ C.Stroud     ┆ 15    ┆ 554       ┆ 109   ┆ 98            ┆ 120            ┆ 62.6            │
+│ J.Goff       ┆ 17    ┆ 638       ┆ 109   ┆ 100           ┆ 118            ┆ 68.7            │
+│ L.Jackson    ┆ 16    ┆ 559       ┆ 108   ┆ 95            ┆ 123            ┆ 56.0            │
+│ J.Hurts      ┆ 17    ┆ 622       ┆ 108   ┆ 98            ┆ 117            ┆ 59.9            │
+│ M.Stafford   ┆ 15    ┆ 562       ┆ 108   ┆ 99            ┆ 118            ┆ 54.1            │
+│ P.Mahomes    ┆ 16    ┆ 672       ┆ 107   ┆ 97            ┆ 119            ┆ 59.0            │
+│ N.Mullens    ┆ 5     ┆ 164       ┆ 107   ┆ 96            ┆ 118            ┆ 13.2            │
+│ B.Mayfield   ┆ 17    ┆ 636       ┆ 106   ┆ 97            ┆ 117            ┆ 49.2            │
+│ K.Cousins    ┆ 8     ┆ 329       ┆ 106   ┆ 92            ┆ 120            ┆ 22.3            │
+└──────────────┴───────┴───────────┴───────┴───────────────┴────────────────┴─────────────────┘
+
+Report: reports/tables/20260915T175353868767Z/pass_plus_leaderboard.csv
+Manifest: data/metadata/20260915T175353868767Z/pass_plus_manifest.json

@@ -1,0 +1,66 @@
+Snapshot checksum verified.
+
+Sequential cohort exclusions:
+  regular_season: excluded 2,271; remaining 47,651
+  flagged_dropback: excluded 26,744; remaining 20,907
+  not_two_point_attempt: excluded 108; remaining 20,799
+  not_spike: excluded 0; remaining 20,799
+  not_kneel: excluded 0; remaining 20,799
+  supported_play_type: excluded 0; remaining 20,799
+  finite_epa: excluded 0; remaining 20,799
+
+Final dropbacks: 20,799
+Identity fallbacks: 3
+Player-season rows: 122
+
+League reference:
+shape: (1, 3)
+┌────────┬──────────────────┬─────────────────────────┐
+│ season ┆ league_dropbacks ┆ league_epa_per_dropback │
+│ ---    ┆ ---              ┆ ---                     │
+│ i32    ┆ u32              ┆ f64                     │
+╞════════╪══════════════════╪═════════════════════════╡
+│ 2021   ┆ 20799            ┆ 0.040479                │
+└────────┴──────────────────┴─────────────────────────┘
+
+Efficiency: minimum 100 dropbacks
+shape: (10, 5)
+┌────────┬─────────────┬───────────┬──────────────────┬───────────────────┐
+│ season ┆ player      ┆ dropbacks ┆ epa_per_dropback ┆ epa_above_average │
+│ ---    ┆ ---         ┆ ---       ┆ ---              ┆ ---               │
+│ i32    ┆ str         ┆ u32       ┆ f64              ┆ f64               │
+╞════════╪═════════════╪═══════════╪══════════════════╪═══════════════════╡
+│ 2021   ┆ A.Rodgers   ┆ 575       ┆ 0.245            ┆ 117.836           │
+│ 2021   ┆ P.Mahomes   ┆ 732       ┆ 0.217            ┆ 129.106           │
+│ 2021   ┆ T.Brady     ┆ 749       ┆ 0.190            ┆ 111.764           │
+│ 2021   ┆ M.Stafford  ┆ 639       ┆ 0.189            ┆ 94.717            │
+│ 2021   ┆ J.Winston   ┆ 189       ┆ 0.176            ┆ 25.691            │
+│ 2021   ┆ D.Prescott  ┆ 646       ┆ 0.175            ┆ 86.748            │
+│ 2021   ┆ J.Burrow    ┆ 589       ┆ 0.172            ┆ 77.402            │
+│ 2021   ┆ J.Allen     ┆ 718       ┆ 0.169            ┆ 92.620            │
+│ 2021   ┆ J.Herbert   ┆ 738       ┆ 0.168            ┆ 94.337            │
+│ 2021   ┆ J.Garoppolo ┆ 473       ┆ 0.162            ┆ 57.341            │
+└────────┴─────────────┴───────────┴──────────────────┴───────────────────┘
+
+Accumulated value above average: minimum 100 dropbacks
+shape: (10, 5)
+┌────────┬─────────────┬───────────┬──────────────────┬───────────────────┐
+│ season ┆ player      ┆ dropbacks ┆ epa_per_dropback ┆ epa_above_average │
+│ ---    ┆ ---         ┆ ---       ┆ ---              ┆ ---               │
+│ i32    ┆ str         ┆ u32       ┆ f64              ┆ f64               │
+╞════════╪═════════════╪═══════════╪══════════════════╪═══════════════════╡
+│ 2021   ┆ P.Mahomes   ┆ 732       ┆ 0.217            ┆ 129.106           │
+│ 2021   ┆ A.Rodgers   ┆ 575       ┆ 0.245            ┆ 117.836           │
+│ 2021   ┆ T.Brady     ┆ 749       ┆ 0.190            ┆ 111.764           │
+│ 2021   ┆ M.Stafford  ┆ 639       ┆ 0.189            ┆ 94.717            │
+│ 2021   ┆ J.Herbert   ┆ 738       ┆ 0.168            ┆ 94.337            │
+│ 2021   ┆ J.Allen     ┆ 718       ┆ 0.169            ┆ 92.620            │
+│ 2021   ┆ D.Prescott  ┆ 646       ┆ 0.175            ┆ 86.748            │
+│ 2021   ┆ J.Burrow    ┆ 589       ┆ 0.172            ┆ 77.402            │
+│ 2021   ┆ J.Garoppolo ┆ 473       ┆ 0.162            ┆ 57.341            │
+│ 2021   ┆ K.Murray    ┆ 541       ┆ 0.142            ┆ 54.799            │
+└────────┴─────────────┴───────────┴──────────────────┴───────────────────┘
+
+Cohort: data/processed/20260915T175347520081Z/dropbacks.parquet
+Leaderboard: reports/tables/20260915T175347520081Z/passing_baseline.csv
+Manifest: data/metadata/20260915T175347520081Z/cohort_manifest.json

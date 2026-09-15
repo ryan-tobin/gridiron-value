@@ -1,0 +1,32 @@
+Reference participants: 108
+Reference dropbacks: 19,839
+League adjusted EPA/dropback: 0.042289
+Weighted SD of player rates: 0.177877
+
+Experimental Pass+ leaderboard:
+Resampled bounds describe game variability, not isolated skill.
+shape: (15, 7)
+┌───────────────┬───────┬───────────┬───────┬───────────────┬────────────────┬─────────────────┐
+│ player        ┆ games ┆ dropbacks ┆ Pass+ ┆ resampled_low ┆ resampled_high ┆ adjusted_EPA_AA │
+│ ---           ┆ ---   ┆ ---       ┆ ---   ┆ ---           ┆ ---            ┆ ---             │
+│ str           ┆ i64   ┆ i64       ┆ i64   ┆ i64           ┆ i64            ┆ f64             │
+╞═══════════════╪═══════╪═══════════╪═══════╪═══════════════╪════════════════╪═════════════════╡
+│ L.Jackson     ┆ 15    ┆ 459       ┆ 128   ┆ 112           ┆ 146            ┆ 150.2           │
+│ P.Mahomes     ┆ 14    ┆ 524       ┆ 120   ┆ 110           ┆ 130            ┆ 123.9           │
+│ D.Brees       ┆ 11    ┆ 385       ┆ 117   ┆ 99            ┆ 133            ┆ 79.1            │
+│ R.Tannehill   ┆ 11    ┆ 329       ┆ 115   ┆ 102           ┆ 130            ┆ 58.3            │
+│ M.Stafford    ┆ 8     ┆ 316       ┆ 114   ┆ 109           ┆ 118            ┆ 51.5            │
+│ D.Prescott    ┆ 16    ┆ 638       ┆ 113   ┆ 103           ┆ 124            ┆ 94.6            │
+│ K.Cousins     ┆ 15    ┆ 481       ┆ 111   ┆ 95            ┆ 127            ┆ 61.0            │
+│ D.Watson      ┆ 15    ┆ 580       ┆ 110   ┆ 95            ┆ 126            ┆ 69.6            │
+│ J.Garoppolo   ┆ 16    ┆ 522       ┆ 110   ┆ 96            ┆ 123            ┆ 60.6            │
+│ D.Carr        ┆ 16    ┆ 554       ┆ 109   ┆ 100           ┆ 119            ┆ 61.0            │
+│ R.Wilson      ┆ 16    ┆ 606       ┆ 108   ┆ 95            ┆ 121            ┆ 60.6            │
+│ J.Goff        ┆ 16    ┆ 657       ┆ 106   ┆ 94            ┆ 118            ┆ 46.7            │
+│ T.Bridgewater ┆ 7     ┆ 220       ┆ 105   ┆ 90            ┆ 119            ┆ 14.2            │
+│ A.Rodgers     ┆ 16    ┆ 630       ┆ 104   ┆ 92            ┆ 118            ┆ 32.6            │
+│ P.Rivers      ┆ 16    ┆ 628       ┆ 104   ┆ 92            ┆ 117            ┆ 26.5            │
+└───────────────┴───────┴───────────┴───────┴───────────────┴────────────────┴─────────────────┘
+
+Report: reports/tables/20260915T175345267639Z/pass_plus_leaderboard.csv
+Manifest: data/metadata/20260915T175345267639Z/pass_plus_manifest.json

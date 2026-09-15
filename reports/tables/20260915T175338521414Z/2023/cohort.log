@@ -1,0 +1,66 @@
+Snapshot checksum verified.
+
+Sequential cohort exclusions:
+  regular_season: excluded 2,266; remaining 47,399
+  flagged_dropback: excluded 26,629; remaining 20,770
+  not_two_point_attempt: excluded 77; remaining 20,693
+  not_spike: excluded 0; remaining 20,693
+  not_kneel: excluded 0; remaining 20,693
+  supported_play_type: excluded 0; remaining 20,693
+  finite_epa: excluded 0; remaining 20,693
+
+Final dropbacks: 20,693
+Identity fallbacks: 1
+Player-season rows: 116
+
+League reference:
+shape: (1, 3)
+┌────────┬──────────────────┬─────────────────────────┐
+│ season ┆ league_dropbacks ┆ league_epa_per_dropback │
+│ ---    ┆ ---              ┆ ---                     │
+│ i32    ┆ u32              ┆ f64                     │
+╞════════╪══════════════════╪═════════════════════════╡
+│ 2023   ┆ 20693            ┆ -0.001131               │
+└────────┴──────────────────┴─────────────────────────┘
+
+Efficiency: minimum 100 dropbacks
+shape: (10, 5)
+┌────────┬──────────────┬───────────┬──────────────────┬───────────────────┐
+│ season ┆ player       ┆ dropbacks ┆ epa_per_dropback ┆ epa_above_average │
+│ ---    ┆ ---          ┆ ---       ┆ ---              ┆ ---               │
+│ i32    ┆ str          ┆ u32       ┆ f64              ┆ f64               │
+╞════════╪══════════════╪═══════════╪══════════════════╪═══════════════════╡
+│ 2023   ┆ B.Purdy      ┆ 486       ┆ 0.311            ┆ 151.938           │
+│ 2023   ┆ D.Prescott   ┆ 656       ┆ 0.204            ┆ 134.833           │
+│ 2023   ┆ T.Tagovailoa ┆ 603       ┆ 0.178            ┆ 108.008           │
+│ 2023   ┆ J.Allen      ┆ 649       ┆ 0.166            ┆ 108.288           │
+│ 2023   ┆ J.Love       ┆ 631       ┆ 0.129            ┆ 82.061            │
+│ 2023   ┆ J.Browning   ┆ 283       ┆ 0.116            ┆ 33.206            │
+│ 2023   ┆ C.Stroud     ┆ 554       ┆ 0.114            ┆ 63.722            │
+│ 2023   ┆ J.Goff       ┆ 638       ┆ 0.107            ┆ 68.697            │
+│ 2023   ┆ L.Jackson    ┆ 559       ┆ 0.102            ┆ 57.679            │
+│ 2023   ┆ N.Mullens    ┆ 164       ┆ 0.099            ┆ 16.480            │
+└────────┴──────────────┴───────────┴──────────────────┴───────────────────┘
+
+Accumulated value above average: minimum 100 dropbacks
+shape: (10, 5)
+┌────────┬──────────────┬───────────┬──────────────────┬───────────────────┐
+│ season ┆ player       ┆ dropbacks ┆ epa_per_dropback ┆ epa_above_average │
+│ ---    ┆ ---          ┆ ---       ┆ ---              ┆ ---               │
+│ i32    ┆ str          ┆ u32       ┆ f64              ┆ f64               │
+╞════════╪══════════════╪═══════════╪══════════════════╪═══════════════════╡
+│ 2023   ┆ B.Purdy      ┆ 486       ┆ 0.311            ┆ 151.938           │
+│ 2023   ┆ D.Prescott   ┆ 656       ┆ 0.204            ┆ 134.833           │
+│ 2023   ┆ J.Allen      ┆ 649       ┆ 0.166            ┆ 108.288           │
+│ 2023   ┆ T.Tagovailoa ┆ 603       ┆ 0.178            ┆ 108.008           │
+│ 2023   ┆ J.Love       ┆ 631       ┆ 0.129            ┆ 82.061            │
+│ 2023   ┆ J.Goff       ┆ 638       ┆ 0.107            ┆ 68.697            │
+│ 2023   ┆ P.Mahomes    ┆ 672       ┆ 0.096            ┆ 65.027            │
+│ 2023   ┆ C.Stroud     ┆ 554       ┆ 0.114            ┆ 63.722            │
+│ 2023   ┆ J.Hurts      ┆ 622       ┆ 0.097            ┆ 60.997            │
+│ 2023   ┆ L.Jackson    ┆ 559       ┆ 0.102            ┆ 57.679            │
+└────────┴──────────────┴───────────┴──────────────────┴───────────────────┘
+
+Cohort: data/processed/20260915T175351749939Z/dropbacks.parquet
+Leaderboard: reports/tables/20260915T175351749939Z/passing_baseline.csv
+Manifest: data/metadata/20260915T175351749939Z/cohort_manifest.json

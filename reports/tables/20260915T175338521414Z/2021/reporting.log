@@ -1,0 +1,32 @@
+Reference participants: 122
+Reference dropbacks: 20,799
+League adjusted EPA/dropback: 0.040479
+Weighted SD of player rates: 0.185021
+
+Experimental Pass+ leaderboard:
+Resampled bounds describe game variability, not isolated skill.
+shape: (15, 7)
+┌───────────────┬───────┬───────────┬───────┬───────────────┬────────────────┬─────────────────┐
+│ player        ┆ games ┆ dropbacks ┆ Pass+ ┆ resampled_low ┆ resampled_high ┆ adjusted_EPA_AA │
+│ ---           ┆ ---   ┆ ---       ┆ ---   ┆ ---           ┆ ---            ┆ ---             │
+│ str           ┆ i64   ┆ i64       ┆ i64   ┆ i64           ┆ i64            ┆ f64             │
+╞═══════════════╪═══════╪═══════════╪═══════╪═══════════════╪════════════════╪═════════════════╡
+│ A.Rodgers     ┆ 16    ┆ 575       ┆ 117   ┆ 107           ┆ 126            ┆ 119.0           │
+│ P.Mahomes     ┆ 17    ┆ 732       ┆ 115   ┆ 104           ┆ 126            ┆ 133.4           │
+│ T.Brady       ┆ 17    ┆ 749       ┆ 113   ┆ 103           ┆ 122            ┆ 116.4           │
+│ M.Stafford    ┆ 17    ┆ 639       ┆ 112   ┆ 100           ┆ 124            ┆ 95.7            │
+│ J.Winston     ┆ 7     ┆ 189       ┆ 112   ┆ 88            ┆ 140            ┆ 27.9            │
+│ D.Prescott    ┆ 16    ┆ 646       ┆ 111   ┆ 98            ┆ 124            ┆ 85.8            │
+│ J.Garoppolo   ┆ 15    ┆ 473       ┆ 110   ┆ 100           ┆ 122            ┆ 59.5            │
+│ J.Burrow      ┆ 16    ┆ 589       ┆ 110   ┆ 96            ┆ 124            ┆ 72.7            │
+│ J.Allen       ┆ 17    ┆ 718       ┆ 110   ┆ 101           ┆ 119            ┆ 86.9            │
+│ J.Herbert     ┆ 17    ┆ 738       ┆ 110   ┆ 100           ┆ 119            ┆ 88.2            │
+│ K.Murray      ┆ 14    ┆ 541       ┆ 109   ┆ 98            ┆ 119            ┆ 56.8            │
+│ K.Cousins     ┆ 16    ┆ 599       ┆ 106   ┆ 96            ┆ 116            ┆ 46.1            │
+│ C.McCoy       ┆ 4     ┆ 108       ┆ 106   ┆ 51            ┆ 133            ┆ 7.6             │
+│ T.Bridgewater ┆ 14    ┆ 472       ┆ 106   ┆ 95            ┆ 117            ┆ 32.4            │
+│ J.Hurts       ┆ 15    ┆ 506       ┆ 102   ┆ 90            ┆ 114            ┆ 15.3            │
+└───────────────┴───────┴───────────┴───────┴───────────────┴────────────────┴─────────────────┘
+
+Report: reports/tables/20260915T175349423779Z/pass_plus_leaderboard.csv
+Manifest: data/metadata/20260915T175349423779Z/pass_plus_manifest.json

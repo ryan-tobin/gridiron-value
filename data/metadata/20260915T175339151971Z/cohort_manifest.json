@@ -1,0 +1,77 @@
+{
+  "run_id": "20260915T175339151971Z",
+  "cohort_version": "0.1.0",
+  "source_run_id": "20260915T171500510195Z",
+  "source_sha256": "0166785545b15de785075a154668996b8cb71294f7a7c3d9acbf4ae90a99f2dc",
+  "polars_version": "1.44.2",
+  "code_sha256": {
+    "cohort.py": "d65e798962d5f4c96d725dabfee8494dd5b48fb801b89c95b1bb35a3f1afe0f1",
+    "baseline.py": "0e1301ccac1653011180acca62be727082b4b025cd30f0129af79ccbb34c898d"
+  },
+  "exclusions": [
+    {
+      "rule": "regular_season",
+      "before": 47245,
+      "excluded": 1977,
+      "remaining": 45268
+    },
+    {
+      "rule": "flagged_dropback",
+      "before": 45268,
+      "excluded": 25854,
+      "remaining": 19414
+    },
+    {
+      "rule": "not_two_point_attempt",
+      "before": 19414,
+      "excluded": 58,
+      "remaining": 19356
+    },
+    {
+      "rule": "not_spike",
+      "before": 19356,
+      "excluded": 0,
+      "remaining": 19356
+    },
+    {
+      "rule": "not_kneel",
+      "before": 19356,
+      "excluded": 0,
+      "remaining": 19356
+    },
+    {
+      "rule": "supported_play_type",
+      "before": 19356,
+      "excluded": 0,
+      "remaining": 19356
+    },
+    {
+      "rule": "finite_epa",
+      "before": 19356,
+      "excluded": 0,
+      "remaining": 19356
+    }
+  ],
+  "cohort_rows": 19356,
+  "identity_fallbacks": 0,
+  "penalty_rows_retained": 341,
+  "files": {
+    "cohort": {
+      "path": "data/processed/20260915T175339151971Z/dropbacks.parquet",
+      "sha256": "db28c569f358876d765c446459916ead0a4da1b5be154be68d4d847060d934f8"
+    },
+    "leaderboard": {
+      "path": "reports/tables/20260915T175339151971Z/passing_baseline.csv",
+      "sha256": "e307aa01af6c165836afb9e980f91689a4ccf3e52070cf60d18f9ccb9bacf4b8"
+    }
+  },
+  "display_min_dropbacks": 100,
+  "notes": [
+    "All eligible participants are retained regardless of position.",
+    "Penalty flags alone do not exclude a play.",
+    "Null eligibility conditions fail the corresponding rule.",
+    "Exclusion counts are sequential and mutually exclusive.",
+    "The saved leaderboard includes every eligible participant.",
+    "EPA is descriptive and has no additional opponent adjustment."
+  ]
+}

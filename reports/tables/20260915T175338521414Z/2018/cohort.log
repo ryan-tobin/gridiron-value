@@ -1,0 +1,66 @@
+Snapshot checksum verified.
+
+Sequential cohort exclusions:
+  regular_season: excluded 1,989; remaining 45,120
+  flagged_dropback: excluded 25,355; remaining 19,765
+  not_two_point_attempt: excluded 96; remaining 19,669
+  not_spike: excluded 0; remaining 19,669
+  not_kneel: excluded 0; remaining 19,669
+  supported_play_type: excluded 0; remaining 19,669
+  finite_epa: excluded 0; remaining 19,669
+
+Final dropbacks: 19,669
+Identity fallbacks: 0
+Player-season rows: 107
+
+League reference:
+shape: (1, 3)
+┌────────┬──────────────────┬─────────────────────────┐
+│ season ┆ league_dropbacks ┆ league_epa_per_dropback │
+│ ---    ┆ ---              ┆ ---                     │
+│ i32    ┆ u32              ┆ f64                     │
+╞════════╪══════════════════╪═════════════════════════╡
+│ 2018   ┆ 19669            ┆ 0.056298                │
+└────────┴──────────────────┴─────────────────────────┘
+
+Efficiency: minimum 100 dropbacks
+shape: (10, 5)
+┌────────┬──────────────────┬───────────┬──────────────────┬───────────────────┐
+│ season ┆ player           ┆ dropbacks ┆ epa_per_dropback ┆ epa_above_average │
+│ ---    ┆ ---              ┆ ---       ┆ ---              ┆ ---               │
+│ i32    ┆ str              ┆ u32       ┆ f64              ┆ f64               │
+╞════════╪══════════════════╪═══════════╪══════════════════╪═══════════════════╡
+│ 2018   ┆ P.Mahomes        ┆ 633       ┆ 0.360            ┆ 191.931           │
+│ 2018   ┆ D.Brees          ┆ 510       ┆ 0.286            ┆ 116.933           │
+│ 2018   ┆ P.Rivers         ┆ 545       ┆ 0.223            ┆ 91.059            │
+│ 2018   ┆ J.Goff           ┆ 612       ┆ 0.193            ┆ 83.884            │
+│ 2018   ┆ B.Roethlisberger ┆ 708       ┆ 0.187            ┆ 92.459            │
+│ 2018   ┆ M.Ryan           ┆ 666       ┆ 0.177            ┆ 80.436            │
+│ 2018   ┆ R.Wilson         ┆ 499       ┆ 0.172            ┆ 57.589            │
+│ 2018   ┆ R.Fitzpatrick    ┆ 283       ┆ 0.166            ┆ 31.144            │
+│ 2018   ┆ T.Brady          ┆ 594       ┆ 0.151            ┆ 56.450            │
+│ 2018   ┆ M.Trubisky       ┆ 493       ┆ 0.145            ┆ 43.800            │
+└────────┴──────────────────┴───────────┴──────────────────┴───────────────────┘
+
+Accumulated value above average: minimum 100 dropbacks
+shape: (10, 5)
+┌────────┬──────────────────┬───────────┬──────────────────┬───────────────────┐
+│ season ┆ player           ┆ dropbacks ┆ epa_per_dropback ┆ epa_above_average │
+│ ---    ┆ ---              ┆ ---       ┆ ---              ┆ ---               │
+│ i32    ┆ str              ┆ u32       ┆ f64              ┆ f64               │
+╞════════╪══════════════════╪═══════════╪══════════════════╪═══════════════════╡
+│ 2018   ┆ P.Mahomes        ┆ 633       ┆ 0.360            ┆ 191.931           │
+│ 2018   ┆ D.Brees          ┆ 510       ┆ 0.286            ┆ 116.933           │
+│ 2018   ┆ B.Roethlisberger ┆ 708       ┆ 0.187            ┆ 92.459            │
+│ 2018   ┆ P.Rivers         ┆ 545       ┆ 0.223            ┆ 91.059            │
+│ 2018   ┆ J.Goff           ┆ 612       ┆ 0.193            ┆ 83.884            │
+│ 2018   ┆ M.Ryan           ┆ 666       ┆ 0.177            ┆ 80.436            │
+│ 2018   ┆ R.Wilson         ┆ 499       ┆ 0.172            ┆ 57.589            │
+│ 2018   ┆ A.Luck           ┆ 676       ┆ 0.141            ┆ 56.977            │
+│ 2018   ┆ T.Brady          ┆ 594       ┆ 0.151            ┆ 56.450            │
+│ 2018   ┆ M.Trubisky       ┆ 493       ┆ 0.145            ┆ 43.800            │
+└────────┴──────────────────┴───────────┴──────────────────┴───────────────────┘
+
+Cohort: data/processed/20260915T175341725172Z/dropbacks.parquet
+Leaderboard: reports/tables/20260915T175341725172Z/passing_baseline.csv
+Manifest: data/metadata/20260915T175341725172Z/cohort_manifest.json

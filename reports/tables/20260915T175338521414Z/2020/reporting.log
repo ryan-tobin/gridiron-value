@@ -1,0 +1,32 @@
+Reference participants: 119
+Reference dropbacks: 19,932
+League adjusted EPA/dropback: 0.077885
+Weighted SD of player rates: 0.182123
+
+Experimental Pass+ leaderboard:
+Resampled bounds describe game variability, not isolated skill.
+shape: (15, 7)
+┌───────────────┬───────┬───────────┬───────┬───────────────┬────────────────┬─────────────────┐
+│ player        ┆ games ┆ dropbacks ┆ Pass+ ┆ resampled_low ┆ resampled_high ┆ adjusted_EPA_AA │
+│ ---           ┆ ---   ┆ ---       ┆ ---   ┆ ---           ┆ ---            ┆ ---             │
+│ str           ┆ i64   ┆ i64       ┆ i64   ┆ i64           ┆ i64            ┆ f64             │
+╞═══════════════╪═══════╪═══════════╪═══════╪═══════════════╪════════════════╪═════════════════╡
+│ A.Rodgers     ┆ 16    ┆ 567       ┆ 121   ┆ 108           ┆ 133            ┆ 144.8           │
+│ P.Mahomes     ┆ 15    ┆ 649       ┆ 117   ┆ 108           ┆ 128            ┆ 137.8           │
+│ J.Allen       ┆ 16    ┆ 627       ┆ 117   ┆ 108           ┆ 127            ┆ 131.8           │
+│ R.Tannehill   ┆ 16    ┆ 525       ┆ 114   ┆ 104           ┆ 125            ┆ 91.8            │
+│ D.Watson      ┆ 16    ┆ 653       ┆ 111   ┆ 104           ┆ 119            ┆ 89.0            │
+│ T.Brady       ┆ 16    ┆ 631       ┆ 110   ┆ 96            ┆ 123            ┆ 74.5            │
+│ J.Garoppolo   ┆ 6     ┆ 155       ┆ 108   ┆ 77            ┆ 137            ┆ 15.9            │
+│ R.Fitzpatrick ┆ 9     ┆ 295       ┆ 108   ┆ 93            ┆ 126            ┆ 27.4            │
+│ B.Mayfield    ┆ 16    ┆ 532       ┆ 108   ┆ 94            ┆ 122            ┆ 48.5            │
+│ L.Jackson     ┆ 15    ┆ 451       ┆ 107   ┆ 96            ┆ 119            ┆ 41.1            │
+│ D.Brees       ┆ 12    ┆ 403       ┆ 107   ┆ 99            ┆ 115            ┆ 32.4            │
+│ K.Cousins     ┆ 16    ┆ 569       ┆ 106   ┆ 98            ┆ 113            ┆ 39.7            │
+│ P.Rivers      ┆ 16    ┆ 560       ┆ 106   ┆ 96            ┆ 115            ┆ 37.6            │
+│ R.Wilson      ┆ 16    ┆ 657       ┆ 105   ┆ 96            ┆ 114            ┆ 41.6            │
+│ J.Herbert     ┆ 15    ┆ 648       ┆ 105   ┆ 93            ┆ 117            ┆ 39.8            │
+└───────────────┴───────┴───────────┴───────┴───────────────┴────────────────┴─────────────────┘
+
+Report: reports/tables/20260915T175347204551Z/pass_plus_leaderboard.csv
+Manifest: data/metadata/20260915T175347204551Z/pass_plus_manifest.json

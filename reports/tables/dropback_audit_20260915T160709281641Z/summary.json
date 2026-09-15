@@ -1,0 +1,27 @@
+{
+  "source_run_id": "20260915T160404423841Z",
+  "source_sha256": "5ed293fdf54d79e34426133829f3111faf577db29b8cfc25cf910d75eb55b2ef",
+  "diagnostics": {
+    "regular_season_flagged_dropbacks": 19830,
+    "missing_raw_passer_id": 1089,
+    "missing_standard_passer_id": 2,
+    "missing_raw_with_standard_id_available": 1087,
+    "standard_vs_event_id_conflicts": 0,
+    "scrambles": 1089,
+    "sacks": 1287,
+    "spikes": 0,
+    "kneels": 0,
+    "two_point_attempts": 96,
+    "penalty_flagged_rows": 317,
+    "no_play_rows": 0
+  },
+  "missing_raw_breakdown": [
+    {
+      "play_type": "run",
+      "qb_scramble": 1.0,
+      "sack": 0.0,
+      "qb_spike": 0.0,
+      "rows": 1089
+    }
+  ]
+}

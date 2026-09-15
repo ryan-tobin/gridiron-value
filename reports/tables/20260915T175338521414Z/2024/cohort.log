@@ -1,0 +1,66 @@
+Snapshot checksum verified.
+
+Sequential cohort exclusions:
+  regular_season: excluded 2,218; remaining 47,274
+  flagged_dropback: excluded 27,059; remaining 20,215
+  not_two_point_attempt: excluded 99; remaining 20,116
+  not_spike: excluded 0; remaining 20,116
+  not_kneel: excluded 0; remaining 20,116
+  supported_play_type: excluded 0; remaining 20,116
+  finite_epa: excluded 0; remaining 20,116
+
+Final dropbacks: 20,116
+Identity fallbacks: 1
+Player-season rows: 110
+
+League reference:
+shape: (1, 3)
+┌────────┬──────────────────┬─────────────────────────┐
+│ season ┆ league_dropbacks ┆ league_epa_per_dropback │
+│ ---    ┆ ---              ┆ ---                     │
+│ i32    ┆ u32              ┆ f64                     │
+╞════════╪══════════════════╪═════════════════════════╡
+│ 2024   ┆ 20116            ┆ 0.052351                │
+└────────┴──────────────────┴─────────────────────────┘
+
+Efficiency: minimum 100 dropbacks
+shape: (10, 5)
+┌────────┬──────────────┬───────────┬──────────────────┬───────────────────┐
+│ season ┆ player       ┆ dropbacks ┆ epa_per_dropback ┆ epa_above_average │
+│ ---    ┆ ---          ┆ ---       ┆ ---              ┆ ---               │
+│ i32    ┆ str          ┆ u32       ┆ f64              ┆ f64               │
+╞════════╪══════════════╪═══════════╪══════════════════╪═══════════════════╡
+│ 2024   ┆ L.Jackson    ┆ 538       ┆ 0.356            ┆ 163.423           │
+│ 2024   ┆ J.Allen      ┆ 539       ┆ 0.304            ┆ 135.674           │
+│ 2024   ┆ J.Goff       ┆ 581       ┆ 0.277            ┆ 130.461           │
+│ 2024   ┆ T.Tagovailoa ┆ 425       ┆ 0.220            ┆ 71.177            │
+│ 2024   ┆ B.Mayfield   ┆ 651       ┆ 0.196            ┆ 93.822            │
+│ 2024   ┆ B.Purdy      ┆ 525       ┆ 0.186            ┆ 70.271            │
+│ 2024   ┆ J.Daniels    ┆ 597       ┆ 0.176            ┆ 74.102            │
+│ 2024   ┆ J.Hurts      ┆ 437       ┆ 0.172            ┆ 52.333            │
+│ 2024   ┆ J.Burrow     ┆ 721       ┆ 0.168            ┆ 83.542            │
+│ 2024   ┆ P.Mahomes    ┆ 652       ┆ 0.159            ┆ 69.354            │
+└────────┴──────────────┴───────────┴──────────────────┴───────────────────┘
+
+Accumulated value above average: minimum 100 dropbacks
+shape: (10, 5)
+┌────────┬──────────────┬───────────┬──────────────────┬───────────────────┐
+│ season ┆ player       ┆ dropbacks ┆ epa_per_dropback ┆ epa_above_average │
+│ ---    ┆ ---          ┆ ---       ┆ ---              ┆ ---               │
+│ i32    ┆ str          ┆ u32       ┆ f64              ┆ f64               │
+╞════════╪══════════════╪═══════════╪══════════════════╪═══════════════════╡
+│ 2024   ┆ L.Jackson    ┆ 538       ┆ 0.356            ┆ 163.423           │
+│ 2024   ┆ J.Allen      ┆ 539       ┆ 0.304            ┆ 135.674           │
+│ 2024   ┆ J.Goff       ┆ 581       ┆ 0.277            ┆ 130.461           │
+│ 2024   ┆ B.Mayfield   ┆ 651       ┆ 0.196            ┆ 93.822            │
+│ 2024   ┆ J.Burrow     ┆ 721       ┆ 0.168            ┆ 83.542            │
+│ 2024   ┆ J.Daniels    ┆ 597       ┆ 0.176            ┆ 74.102            │
+│ 2024   ┆ T.Tagovailoa ┆ 425       ┆ 0.220            ┆ 71.177            │
+│ 2024   ┆ B.Purdy      ┆ 525       ┆ 0.186            ┆ 70.271            │
+│ 2024   ┆ P.Mahomes    ┆ 652       ┆ 0.159            ┆ 69.354            │
+│ 2024   ┆ J.Hurts      ┆ 437       ┆ 0.172            ┆ 52.333            │
+└────────┴──────────────┴───────────┴──────────────────┴───────────────────┘
+
+Cohort: data/processed/20260915T175354211748Z/dropbacks.parquet
+Leaderboard: reports/tables/20260915T175354211748Z/passing_baseline.csv
+Manifest: data/metadata/20260915T175354211748Z/cohort_manifest.json

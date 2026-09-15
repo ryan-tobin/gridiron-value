@@ -1,0 +1,39 @@
+{
+  "run_id": "20260915T175341400908Z",
+  "status": "experimental",
+  "index_version": "0.1.0",
+  "source_schedule_run_id": "20260915T175340639851Z",
+  "source_variability_run_id": "20260915T175341158045Z",
+  "source_leaderboard_sha256": "54646ff5db44b048c6d8e49a1ab5c87c16d3da17d3d06027e55d2f810a493104",
+  "source_variability_sha256": "8242c211f15c4d77a58d8cb06f6af66032f0fa007b7af1a30178d21d6c23d03c",
+  "reference": {
+    "season": 2017,
+    "participants": 94,
+    "dropbacks": 19356,
+    "league_mean_adjusted_epa_per_dropback": 0.005665880280425988,
+    "weighted_sd_of_player_rates": 0.19820740894492533,
+    "index_center": 100.0,
+    "index_points_per_sd": 15.0,
+    "weighting": "Eligible dropbacks per player-season"
+  },
+  "display_min_dropbacks": 100,
+  "code_sha256": "b21c4da7d7321d0774bb5c297a0fcd0a9bef17f6feb8f3255f40a2dd696261c8",
+  "packages": {
+    "numpy": "2.5.3",
+    "polars": "1.44.2"
+  },
+  "report": {
+    "path": "reports/tables/20260915T175341400908Z/pass_plus_leaderboard.csv",
+    "sha256": "8cb3ac847256991f6d024cbb20e980a9f93d96657b09b6ba6c6a6037e863de75"
+  },
+  "interpretation": [
+    "100 is the play-weighted league reference.",
+    "15 points represent one weighted SD of player-season rates.",
+    "Scores are not percentage-above-average values.",
+    "All eligible participants determine the reference.",
+    "Display thresholds do not alter the index.",
+    "Resampling ranges use fixed schedule and index references.",
+    "Ranges are not confidence intervals for isolated skill.",
+    "The index is a presentation transform, not a new model."
+  ]
+}

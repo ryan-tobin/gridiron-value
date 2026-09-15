@@ -1,0 +1,32 @@
+Reference participants: 115
+Reference dropbacks: 20,210
+League adjusted EPA/dropback: 0.015473
+Weighted SD of player rates: 0.180744
+
+Experimental Pass+ leaderboard:
+Resampled bounds describe game variability, not isolated skill.
+shape: (15, 7)
+┌──────────────┬───────┬───────────┬───────┬───────────────┬────────────────┬─────────────────┐
+│ player       ┆ games ┆ dropbacks ┆ Pass+ ┆ resampled_low ┆ resampled_high ┆ adjusted_EPA_AA │
+│ ---          ┆ ---   ┆ ---       ┆ ---   ┆ ---           ┆ ---            ┆ ---             │
+│ str          ┆ i64   ┆ i64       ┆ i64   ┆ i64           ┆ i64            ┆ f64             │
+╞══════════════╪═══════╪═══════════╪═══════╪═══════════════╪════════════════╪═════════════════╡
+│ P.Mahomes    ┆ 17    ┆ 720       ┆ 123   ┆ 115           ┆ 131            ┆ 196.6           │
+│ T.Tagovailoa ┆ 13    ┆ 430       ┆ 118   ┆ 104           ┆ 131            ┆ 91.4            │
+│ J.Allen      ┆ 16    ┆ 650       ┆ 117   ┆ 109           ┆ 124            ┆ 129.7           │
+│ S.Darnold    ┆ 6     ┆ 156       ┆ 114   ┆ 91            ┆ 133            ┆ 26.7            │
+│ J.Garoppolo  ┆ 11    ┆ 329       ┆ 114   ┆ 102           ┆ 127            ┆ 55.2            │
+│ B.Purdy      ┆ 7     ┆ 187       ┆ 114   ┆ 105           ┆ 122            ┆ 30.8            │
+│ J.Goff       ┆ 17    ┆ 624       ┆ 112   ┆ 101           ┆ 121            ┆ 89.6            │
+│ J.Burrow     ┆ 16    ┆ 673       ┆ 111   ┆ 100           ┆ 123            ┆ 92.5            │
+│ T.Lawrence   ┆ 17    ┆ 633       ┆ 111   ┆ 102           ┆ 120            ┆ 85.4            │
+│ J.Hurts      ┆ 15    ┆ 541       ┆ 109   ┆ 98            ┆ 119            ┆ 57.8            │
+│ J.Brissett   ┆ 12    ┆ 413       ┆ 106   ┆ 92            ┆ 121            ┆ 28.1            │
+│ D.Prescott   ┆ 12    ┆ 429       ┆ 105   ┆ 92            ┆ 119            ┆ 25.4            │
+│ R.Tannehill  ┆ 12    ┆ 370       ┆ 105   ┆ 92            ┆ 117            ┆ 20.1            │
+│ D.Jones      ┆ 16    ┆ 565       ┆ 104   ┆ 96            ┆ 113            ┆ 24.4            │
+│ L.Jackson    ┆ 12    ┆ 377       ┆ 103   ┆ 91            ┆ 115            ┆ 12.8            │
+└──────────────┴───────┴───────────┴───────┴───────────────┴────────────────┴─────────────────┘
+
+Report: reports/tables/20260915T175351369838Z/pass_plus_leaderboard.csv
+Manifest: data/metadata/20260915T175351369838Z/pass_plus_manifest.json

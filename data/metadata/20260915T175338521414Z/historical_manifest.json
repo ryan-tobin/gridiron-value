@@ -1,0 +1,304 @@
+{
+  "batch_id": "20260915T175338521414Z",
+  "settings": {
+    "offense_alpha": 100.0,
+    "defense_alpha": 1000.0,
+    "folds": 5,
+    "min_dropbacks": 100,
+    "resamples": 10000,
+    "seed": 2026
+  },
+  "environment": {
+    "python": "3.14.3",
+    "packages": {
+      "nflreadpy": "0.1.5",
+      "numpy": "2.5.3",
+      "polars": "1.44.2",
+      "scipy": "1.18.1",
+      "scikit-learn": "1.9.1"
+    },
+    "code_sha256": {
+      "__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "adjustment.py": "5e177f1999f411711ec38517d67d4eb36b8795bcac3b95f6393046f58e73c2f6",
+      "baseline.py": "0e1301ccac1653011180acca62be727082b4b025cd30f0129af79ccbb34c898d",
+      "cohort.py": "d65e798962d5f4c96d725dabfee8494dd5b48fb801b89c95b1bb35a3f1afe0f1",
+      "data.py": "ecb72a237daf258e4ed71c9d9a66302581351ee2955e07a74d1e2ebb1359125b",
+      "historical.py": "bb5f8f03cb527c4ef15c04cad70d0f12cabae0bf87334a1d2d85f0bef20e1a5f",
+      "inspect_dropbacks.py": "5d0ff0f0510e1d4385e0cb62a80e3172deb71e8748178c86477ac964b0251026",
+      "replicate.py": "5147efe7d663648b8db62d915e27ddfef9d8689cd09aaa34f726f9a90b68b1ce",
+      "reporting.py": "b21c4da7d7321d0774bb5c297a0fcd0a9bef17f6feb8f3255f40a2dd696261c8",
+      "schedule.py": "8c7fc992d6f0d35254758fbe02c5c8fde3b5616f61ac6e1728e60335856326ca",
+      "shrinkage.py": "5570a45c1c523d4bb15c6af281b15d9f5e10f11f2f0711b52e79b485bb3e124a",
+      "uncertainty.py": "596e4bb1ff9882e87535fbaa7e08d6bfb9f278aeff458455430cee1469be9e47",
+      "variability.py": "4cc67175afcd17c018f209b6245f03cd61e428126755bdd1d8b59784ef57b8a0"
+    }
+  },
+  "inputs": [
+    {
+      "season": 2017,
+      "manifest": {
+        "path": "data/metadata/20260915T171500510195Z/manifest.json",
+        "sha256": "914e1d4893461dfc780630c2019709fa1ad17d6c531d74efc1034f1fcb6171d4"
+      }
+    },
+    {
+      "season": 2018,
+      "manifest": {
+        "path": "data/metadata/20260915T171502064256Z/manifest.json",
+        "sha256": "b41dfe6d0bc3aaccbaa9ed7fa541a724a20fcb9efab7cb26eb81fc2ab3e7f47e"
+      }
+    },
+    {
+      "season": 2019,
+      "manifest": {
+        "path": "data/metadata/20260915T171503839679Z/manifest.json",
+        "sha256": "ebd40a5139f245dfc0cf730a98a8e59cd4c29bae317bec35dadffefc86e4d192"
+      }
+    },
+    {
+      "season": 2020,
+      "manifest": {
+        "path": "data/metadata/20260915T170458632675Z/manifest.json",
+        "sha256": "3453925c6aef45b053ffba8efc96fb2ce05a47ed598475820b6dd1d4b9800fab"
+      }
+    },
+    {
+      "season": 2021,
+      "manifest": {
+        "path": "data/metadata/20260915T170459882786Z/manifest.json",
+        "sha256": "0c0f891ac5366a774e24567ac78cf6f714ffa5e39b0cac5a1b9d108a52a673d8"
+      }
+    },
+    {
+      "season": 2022,
+      "manifest": {
+        "path": "data/metadata/20260915T170501000815Z/manifest.json",
+        "sha256": "f0ca193f24d6a97ae5124ed5715b4a122ef87ec23fa1d533e659b4d44192fc32"
+      }
+    },
+    {
+      "season": 2023,
+      "manifest": {
+        "path": "data/metadata/20260915T170502038669Z/manifest.json",
+        "sha256": "ed1930ab9062697bcec82f683d00424812995aea4c52332371e9fff5f118b7c3"
+      }
+    },
+    {
+      "season": 2024,
+      "manifest": {
+        "path": "data/metadata/20260915T170503050198Z/manifest.json",
+        "sha256": "67ced64b8aa531ea7d9dd4796d0e60a92870639c9725ae498e17503cfef94a6c"
+      }
+    },
+    {
+      "season": 2025,
+      "manifest": {
+        "path": "data/metadata/20260915T160404423841Z/manifest.json",
+        "sha256": "23daa0860a0a5002a6d1daefe66f74884b7a0fac218a2960bad03b9f7731739b"
+      }
+    }
+  ],
+  "completed": [
+    {
+      "season": 2017,
+      "stages": {
+        "cohort": {
+          "path": "data/metadata/20260915T175339151971Z/cohort_manifest.json",
+          "sha256": "e9aad1b64498caf9f703e5f03c1217c87c7825d6e3df2d77820174a7d34c0f32"
+        },
+        "schedule": {
+          "path": "data/metadata/20260915T175340639851Z/schedule_manifest.json",
+          "sha256": "fe7b024d2eadcc399dc7b892c92151950c0cfeaaa327ad7d3c6b2842fb2ef5ef"
+        },
+        "variability": {
+          "path": "data/metadata/20260915T175341158045Z/variability_manifest.json",
+          "sha256": "91900371dad2c0993fe63f129a55aa02487628b5e04451e08e64b334d5857846"
+        },
+        "reporting": {
+          "path": "data/metadata/20260915T175341400908Z/pass_plus_manifest.json",
+          "sha256": "98aa80ce6fe7d6ba100961a4828c3b8d76f6f2cc4d5de548766716314b9bdffd"
+        }
+      }
+    },
+    {
+      "season": 2018,
+      "stages": {
+        "cohort": {
+          "path": "data/metadata/20260915T175341725172Z/cohort_manifest.json",
+          "sha256": "f3c601b0dfae656465714484a60a2eb3571625d238d17f210a7e3f58c8c3b2a8"
+        },
+        "schedule": {
+          "path": "data/metadata/20260915T175342684140Z/schedule_manifest.json",
+          "sha256": "aa4babdff4143053cb18363a7d345a2f0599b9614f175928e938dd2c2eb2dd73"
+        },
+        "variability": {
+          "path": "data/metadata/20260915T175343107967Z/variability_manifest.json",
+          "sha256": "87d9a4855af4b79b877dce7bd358d6cdb5d89e00db9aa3cee76780c1c8c8ef30"
+        },
+        "reporting": {
+          "path": "data/metadata/20260915T175343345511Z/pass_plus_manifest.json",
+          "sha256": "37705445f42d04de282d654c574daca27c047c0f315f7ddbbe1ddc9f02cdf42f"
+        }
+      }
+    },
+    {
+      "season": 2019,
+      "stages": {
+        "cohort": {
+          "path": "data/metadata/20260915T175343660537Z/cohort_manifest.json",
+          "sha256": "f13ca3832115c342b893ef1e20a04e739ebd831a93202a5858015a0d7405ce95"
+        },
+        "schedule": {
+          "path": "data/metadata/20260915T175344609356Z/schedule_manifest.json",
+          "sha256": "46b6e9a6b7f7d26e6eefcbb65099d5c8d5512181d5942909b5df732259e39dfd"
+        },
+        "variability": {
+          "path": "data/metadata/20260915T175345029591Z/variability_manifest.json",
+          "sha256": "541f053989e639becf1fe91211473cd857f048fdf24b277b6c107228c3f382c7"
+        },
+        "reporting": {
+          "path": "data/metadata/20260915T175345267639Z/pass_plus_manifest.json",
+          "sha256": "f30e94bd448b5f8a74410f2690e585deccff1ae9da7bfd3182757255ca018923"
+        }
+      }
+    },
+    {
+      "season": 2020,
+      "stages": {
+        "cohort": {
+          "path": "data/metadata/20260915T175345583592Z/cohort_manifest.json",
+          "sha256": "6bcd51b89bef20e1208048a7d2b9aea2e3cc03b9d456965501a4333f21093ff5"
+        },
+        "schedule": {
+          "path": "data/metadata/20260915T175346542038Z/schedule_manifest.json",
+          "sha256": "e3fc628f4eba2ab8a082f8d38248e82d172dfebb938f8e6f0c66c41671ec6073"
+        },
+        "variability": {
+          "path": "data/metadata/20260915T175346961342Z/variability_manifest.json",
+          "sha256": "ae69f9a2712ac5b43ec7838f99ecc4652d6702265438f2f0f49c8dda29b83dd3"
+        },
+        "reporting": {
+          "path": "data/metadata/20260915T175347204551Z/pass_plus_manifest.json",
+          "sha256": "213ffff67da5407e5b4277075bc6d84ffb004f07db53b1d87e22c873f96d1f08"
+        }
+      }
+    },
+    {
+      "season": 2021,
+      "stages": {
+        "cohort": {
+          "path": "data/metadata/20260915T175347520081Z/cohort_manifest.json",
+          "sha256": "7db757bc0f6803708631aa27790e5e11fe15c613e8e67a78682b5d754dd70d9c"
+        },
+        "schedule": {
+          "path": "data/metadata/20260915T175348684992Z/schedule_manifest.json",
+          "sha256": "41ad022194b0719c5e0a1fcc19bb0d0af956c49eaec003bbf9dc59f1d9c1140b"
+        },
+        "variability": {
+          "path": "data/metadata/20260915T175349171319Z/variability_manifest.json",
+          "sha256": "1a9ccca68729c9987634b77245797dfc0c62c8c4eea993eb09555f19a6fc2339"
+        },
+        "reporting": {
+          "path": "data/metadata/20260915T175349423779Z/pass_plus_manifest.json",
+          "sha256": "02f51a07601ff206fe1d20ae9e30e0116dd49ad762c5f80254e598e9052ebc20"
+        }
+      }
+    },
+    {
+      "season": 2022,
+      "stages": {
+        "cohort": {
+          "path": "data/metadata/20260915T175349755856Z/cohort_manifest.json",
+          "sha256": "cf5bf444f2b16ecbed66165b027e800f539bf6dbb35bbd85cbb05d421b918df3"
+        },
+        "schedule": {
+          "path": "data/metadata/20260915T175350706181Z/schedule_manifest.json",
+          "sha256": "5f9ad6bea78d3bb51ea1914fe11f9504dd82195db185f6c041b9e195ed63007a"
+        },
+        "variability": {
+          "path": "data/metadata/20260915T175351135098Z/variability_manifest.json",
+          "sha256": "a0c7b8252c93325839f5012dbb2df4516dc5d812f3364145d293e512645185dd"
+        },
+        "reporting": {
+          "path": "data/metadata/20260915T175351369838Z/pass_plus_manifest.json",
+          "sha256": "5f5e613a9a5829a5ea0714eaf591d2c38c04c8706209911475987f44efd815e4"
+        }
+      }
+    },
+    {
+      "season": 2023,
+      "stages": {
+        "cohort": {
+          "path": "data/metadata/20260915T175351749939Z/cohort_manifest.json",
+          "sha256": "70167fcced32eb1c20c20b70c2ae78e39fac821558416ed1235991131209dd36"
+        },
+        "schedule": {
+          "path": "data/metadata/20260915T175353128188Z/schedule_manifest.json",
+          "sha256": "fb17b1f9778798ddbccb86fe758cde60d5c79ede8718be9d9079a688cec7657b"
+        },
+        "variability": {
+          "path": "data/metadata/20260915T175353574920Z/variability_manifest.json",
+          "sha256": "bc8119d1d3f53e880506a8ed822331ca5b522da1577658fdfb5a61525ed87294"
+        },
+        "reporting": {
+          "path": "data/metadata/20260915T175353868767Z/pass_plus_manifest.json",
+          "sha256": "1cefec434a5271633a7bfe55f9435e9b4c6a86b95de41a600e9fca02bf6c8b43"
+        }
+      }
+    },
+    {
+      "season": 2024,
+      "stages": {
+        "cohort": {
+          "path": "data/metadata/20260915T175354211748Z/cohort_manifest.json",
+          "sha256": "033704cf3c21f28cb7ae0d390d43dac1ac24b79582f4e7f33e139d7aedba4a29"
+        },
+        "schedule": {
+          "path": "data/metadata/20260915T175355439387Z/schedule_manifest.json",
+          "sha256": "8c0dddbd11e321c602635e8972182ebfd94b752d9ca16cfb51abbb51a02d6993"
+        },
+        "variability": {
+          "path": "data/metadata/20260915T175356141630Z/variability_manifest.json",
+          "sha256": "2f32ca700d6be6714a1906586d5f41f5f6e9b4c5f9792232ff70c7aefb64a9bc"
+        },
+        "reporting": {
+          "path": "data/metadata/20260915T175356430768Z/pass_plus_manifest.json",
+          "sha256": "43bc813e24065382d5e959ee2ec04c21319d4aaa5c5bd31dcd3799e621483bc1"
+        }
+      }
+    },
+    {
+      "season": 2025,
+      "stages": {
+        "cohort": {
+          "path": "data/metadata/20260915T175356816127Z/cohort_manifest.json",
+          "sha256": "76b063c9485574d23c0c8e29623bca030be47805d0352001ea2277c3cd451ce5"
+        },
+        "schedule": {
+          "path": "data/metadata/20260915T175357855355Z/schedule_manifest.json",
+          "sha256": "eee550b4b331ed9252da5c2d0a6212d4a6cb7d03fc3b45abcba4b117dcd9c977"
+        },
+        "variability": {
+          "path": "data/metadata/20260915T175358341428Z/variability_manifest.json",
+          "sha256": "23863bd14c063d7ccd65a20df8c18acbe6cb0695692bf3e52883991a9edd9d27"
+        },
+        "reporting": {
+          "path": "data/metadata/20260915T175358573019Z/pass_plus_manifest.json",
+          "sha256": "4c4d5b11eaa1dfebb4844b6816f0cf4d76da98b225c1bb291569effef1588fe2"
+        }
+      }
+    }
+  ],
+  "status": "completed",
+  "output_dir": "reports/tables/20260915T175338521414Z",
+  "files": {
+    "historical_pass_plus": {
+      "path": "reports/tables/20260915T175338521414Z/historical_pass_plus.csv",
+      "sha256": "56322a59b9009d1020927aaba5e3fdb1cdff7a096808c07f5ea158c82d40b597"
+    },
+    "season_references": {
+      "path": "reports/tables/20260915T175338521414Z/season_references.csv",
+      "sha256": "cc5900709507cde4f418b6e3aeba3fd499bf7ce72b05df9a420e7deeb1944c3a"
+    }
+  }
+}

@@ -1,0 +1,32 @@
+Reference participants: 107
+Reference dropbacks: 19,669
+League adjusted EPA/dropback: 0.056298
+Weighted SD of player rates: 0.214342
+
+Experimental Pass+ leaderboard:
+Resampled bounds describe game variability, not isolated skill.
+shape: (15, 7)
+┌──────────────────┬───────┬───────────┬───────┬───────────────┬────────────────┬─────────────────┐
+│ player           ┆ games ┆ dropbacks ┆ Pass+ ┆ resampled_low ┆ resampled_high ┆ adjusted_EPA_AA │
+│ ---              ┆ ---   ┆ ---       ┆ ---   ┆ ---           ┆ ---            ┆ ---             │
+│ str              ┆ i64   ┆ i64       ┆ i64   ┆ i64           ┆ i64            ┆ f64             │
+╞══════════════════╪═══════╪═══════════╪═══════╪═══════════════╪════════════════╪═════════════════╡
+│ P.Mahomes        ┆ 16    ┆ 633       ┆ 122   ┆ 116           ┆ 128            ┆ 195.2           │
+│ D.Brees          ┆ 15    ┆ 510       ┆ 116   ┆ 104           ┆ 128            ┆ 117.2           │
+│ P.Rivers         ┆ 16    ┆ 545       ┆ 112   ┆ 101           ┆ 121            ┆ 91.1            │
+│ J.Goff           ┆ 16    ┆ 612       ┆ 110   ┆ 100           ┆ 120            ┆ 86.8            │
+│ B.Roethlisberger ┆ 16    ┆ 708       ┆ 110   ┆ 101           ┆ 119            ┆ 96.6            │
+│ M.Ryan           ┆ 16    ┆ 666       ┆ 108   ┆ 100           ┆ 116            ┆ 77.4            │
+│ R.Wilson         ┆ 16    ┆ 499       ┆ 108   ┆ 97            ┆ 119            ┆ 57.0            │
+│ R.Fitzpatrick    ┆ 8     ┆ 283       ┆ 108   ┆ 93            ┆ 127            ┆ 31.9            │
+│ T.Brady          ┆ 16    ┆ 594       ┆ 107   ┆ 97            ┆ 115            ┆ 58.2            │
+│ M.Trubisky       ┆ 14    ┆ 493       ┆ 106   ┆ 96            ┆ 118            ┆ 42.6            │
+│ A.Luck           ┆ 16    ┆ 676       ┆ 106   ┆ 98            ┆ 115            ┆ 57.0            │
+│ J.Winston        ┆ 11    ┆ 440       ┆ 106   ┆ 96            ┆ 116            ┆ 35.2            │
+│ A.Rodgers        ┆ 16    ┆ 677       ┆ 105   ┆ 99            ┆ 109            ┆ 45.6            │
+│ D.Watson         ┆ 16    ┆ 619       ┆ 104   ┆ 97            ┆ 111            ┆ 37.6            │
+│ N.Mullens        ┆ 8     ┆ 288       ┆ 103   ┆ 93            ┆ 116            ┆ 14.1            │
+└──────────────────┴───────┴───────────┴───────┴───────────────┴────────────────┴─────────────────┘
+
+Report: reports/tables/20260915T175343345511Z/pass_plus_leaderboard.csv
+Manifest: data/metadata/20260915T175343345511Z/pass_plus_manifest.json

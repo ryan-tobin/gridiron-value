@@ -1,0 +1,66 @@
+Snapshot checksum verified.
+
+Sequential cohort exclusions:
+  regular_season: excluded 2,277; remaining 47,157
+  flagged_dropback: excluded 26,859; remaining 20,298
+  not_two_point_attempt: excluded 88; remaining 20,210
+  not_spike: excluded 0; remaining 20,210
+  not_kneel: excluded 0; remaining 20,210
+  supported_play_type: excluded 0; remaining 20,210
+  finite_epa: excluded 0; remaining 20,210
+
+Final dropbacks: 20,210
+Identity fallbacks: 2
+Player-season rows: 115
+
+League reference:
+shape: (1, 3)
+┌────────┬──────────────────┬─────────────────────────┐
+│ season ┆ league_dropbacks ┆ league_epa_per_dropback │
+│ ---    ┆ ---              ┆ ---                     │
+│ i32    ┆ u32              ┆ f64                     │
+╞════════╪══════════════════╪═════════════════════════╡
+│ 2022   ┆ 20210            ┆ 0.015473                │
+└────────┴──────────────────┴─────────────────────────┘
+
+Efficiency: minimum 100 dropbacks
+shape: (10, 5)
+┌────────┬──────────────┬───────────┬──────────────────┬───────────────────┐
+│ season ┆ player       ┆ dropbacks ┆ epa_per_dropback ┆ epa_above_average │
+│ ---    ┆ ---          ┆ ---       ┆ ---              ┆ ---               │
+│ i32    ┆ str          ┆ u32       ┆ f64              ┆ f64               │
+╞════════╪══════════════╪═══════════╪══════════════════╪═══════════════════╡
+│ 2022   ┆ P.Mahomes    ┆ 720       ┆ 0.291            ┆ 198.169           │
+│ 2022   ┆ T.Tagovailoa ┆ 430       ┆ 0.220            ┆ 88.098            │
+│ 2022   ┆ J.Allen      ┆ 650       ┆ 0.216            ┆ 130.466           │
+│ 2022   ┆ B.Purdy      ┆ 187       ┆ 0.197            ┆ 34.016            │
+│ 2022   ┆ J.Garoppolo  ┆ 329       ┆ 0.187            ┆ 56.416            │
+│ 2022   ┆ S.Darnold    ┆ 156       ┆ 0.179            ┆ 25.548            │
+│ 2022   ┆ J.Goff       ┆ 624       ┆ 0.155            ┆ 87.236            │
+│ 2022   ┆ J.Burrow     ┆ 673       ┆ 0.148            ┆ 89.463            │
+│ 2022   ┆ T.Lawrence   ┆ 633       ┆ 0.146            ┆ 82.390            │
+│ 2022   ┆ J.Hurts      ┆ 541       ┆ 0.127            ┆ 60.193            │
+└────────┴──────────────┴───────────┴──────────────────┴───────────────────┘
+
+Accumulated value above average: minimum 100 dropbacks
+shape: (10, 5)
+┌────────┬──────────────┬───────────┬──────────────────┬───────────────────┐
+│ season ┆ player       ┆ dropbacks ┆ epa_per_dropback ┆ epa_above_average │
+│ ---    ┆ ---          ┆ ---       ┆ ---              ┆ ---               │
+│ i32    ┆ str          ┆ u32       ┆ f64              ┆ f64               │
+╞════════╪══════════════╪═══════════╪══════════════════╪═══════════════════╡
+│ 2022   ┆ P.Mahomes    ┆ 720       ┆ 0.291            ┆ 198.169           │
+│ 2022   ┆ J.Allen      ┆ 650       ┆ 0.216            ┆ 130.466           │
+│ 2022   ┆ J.Burrow     ┆ 673       ┆ 0.148            ┆ 89.463            │
+│ 2022   ┆ T.Tagovailoa ┆ 430       ┆ 0.220            ┆ 88.098            │
+│ 2022   ┆ J.Goff       ┆ 624       ┆ 0.155            ┆ 87.236            │
+│ 2022   ┆ T.Lawrence   ┆ 633       ┆ 0.146            ┆ 82.390            │
+│ 2022   ┆ J.Hurts      ┆ 541       ┆ 0.127            ┆ 60.193            │
+│ 2022   ┆ J.Garoppolo  ┆ 329       ┆ 0.187            ┆ 56.416            │
+│ 2022   ┆ B.Purdy      ┆ 187       ┆ 0.197            ┆ 34.016            │
+│ 2022   ┆ D.Prescott   ┆ 429       ┆ 0.079            ┆ 27.388            │
+└────────┴──────────────┴───────────┴──────────────────┴───────────────────┘
+
+Cohort: data/processed/20260915T175349755856Z/dropbacks.parquet
+Leaderboard: reports/tables/20260915T175349755856Z/passing_baseline.csv
+Manifest: data/metadata/20260915T175349755856Z/cohort_manifest.json

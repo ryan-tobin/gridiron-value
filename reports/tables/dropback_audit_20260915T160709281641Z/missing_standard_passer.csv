@@ -1,0 +1,3 @@
+game_id,play_id,play_type,qb_scramble,sack,qb_spike,penalty,standard_id,raw_passer_id,raw_rusher_id,event_player_id,epa,desc
+2025_08_CLE_NE,1563.0,run,1.0,0.0,0.0,0.0,,,00-0040259,00-0040259,-0.8114259385038167,(2:54) (Shotgun) 84-G.Larvadain scrambles right guard to CLE 40 for 3 yards (44-K.Chaisson; 14-R.Spillane).
+2025_12_BUF_HOU,1545.0,run,1.0,0.0,0.0,0.0,,,00-0038618,00-0038618,0.9142109247040935,(6:02) 19-X.Hutchinson scrambles left end pushed ob at BUF 4 for 9 yards (24-C.Bishop; 7-Ta.Johnson).

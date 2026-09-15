@@ -1,0 +1,10 @@
+season,participants,dropbacks,league_mean_adjusted_epa_per_dropback,weighted_sd_of_player_rates,index_center,index_points_per_sd,weighting,source_pass_plus_manifest
+2017,94,19356,0.005665880280425988,0.19820740894492533,100.0,15.0,Eligible dropbacks per player-season,data/metadata/20260915T175341400908Z/pass_plus_manifest.json
+2018,107,19669,0.05629761466836027,0.21434199483528435,100.0,15.0,Eligible dropbacks per player-season,data/metadata/20260915T175343345511Z/pass_plus_manifest.json
+2019,108,19839,0.042289164979008496,0.17787716898879768,100.0,15.0,Eligible dropbacks per player-season,data/metadata/20260915T175345267639Z/pass_plus_manifest.json
+2020,119,19932,0.07788524616754329,0.1821231257737363,100.0,15.0,Eligible dropbacks per player-season,data/metadata/20260915T175347204551Z/pass_plus_manifest.json
+2021,122,20799,0.040478781944744364,0.18502081604167445,100.0,15.0,Eligible dropbacks per player-season,data/metadata/20260915T175349423779Z/pass_plus_manifest.json
+2022,115,20210,0.01547324552592266,0.18074437879254537,100.0,15.0,Eligible dropbacks per player-season,data/metadata/20260915T175351369838Z/pass_plus_manifest.json
+2023,116,20693,-0.0011310785817268275,0.18165551421266662,100.0,15.0,Eligible dropbacks per player-season,data/metadata/20260915T175353868767Z/pass_plus_manifest.json
+2024,110,20116,0.052350872456481054,0.18953119898447496,100.0,15.0,Eligible dropbacks per player-season,data/metadata/20260915T175356430768Z/pass_plus_manifest.json
+2025,101,19734,0.04314511131264042,0.18750573218388425,100.0,15.0,Eligible dropbacks per player-season,data/metadata/20260915T175358573019Z/pass_plus_manifest.json

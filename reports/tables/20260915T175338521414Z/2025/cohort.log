@@ -1,0 +1,66 @@
+Snapshot checksum verified.
+
+Sequential cohort exclusions:
+  regular_season: excluded 2,319; remaining 46,452
+  flagged_dropback: excluded 26,622; remaining 19,830
+  not_two_point_attempt: excluded 96; remaining 19,734
+  not_spike: excluded 0; remaining 19,734
+  not_kneel: excluded 0; remaining 19,734
+  supported_play_type: excluded 0; remaining 19,734
+  finite_epa: excluded 0; remaining 19,734
+
+Final dropbacks: 19,734
+Identity fallbacks: 2
+Player-season rows: 101
+
+League reference:
+shape: (1, 3)
+┌────────┬──────────────────┬─────────────────────────┐
+│ season ┆ league_dropbacks ┆ league_epa_per_dropback │
+│ ---    ┆ ---              ┆ ---                     │
+│ i32    ┆ u32              ┆ f64                     │
+╞════════╪══════════════════╪═════════════════════════╡
+│ 2025   ┆ 19734            ┆ 0.043145                │
+└────────┴──────────────────┴─────────────────────────┘
+
+Efficiency: minimum 100 dropbacks
+shape: (10, 5)
+┌────────┬────────────┬───────────┬──────────────────┬───────────────────┐
+│ season ┆ player     ┆ dropbacks ┆ epa_per_dropback ┆ epa_above_average │
+│ ---    ┆ ---        ┆ ---       ┆ ---              ┆ ---               │
+│ i32    ┆ str        ┆ u32       ┆ f64              ┆ f64               │
+╞════════╪════════════╪═══════════╪══════════════════╪═══════════════════╡
+│ 2025   ┆ D.Maye     ┆ 601       ┆ 0.316            ┆ 164.276           │
+│ 2025   ┆ J.Love     ┆ 483       ┆ 0.259            ┆ 104.248           │
+│ 2025   ┆ M.Stafford ┆ 624       ┆ 0.223            ┆ 112.315           │
+│ 2025   ┆ B.Purdy    ┆ 313       ┆ 0.206            ┆ 51.106            │
+│ 2025   ┆ J.Goff     ┆ 619       ┆ 0.177            ┆ 82.664            │
+│ 2025   ┆ J.Allen    ┆ 547       ┆ 0.172            ┆ 70.294            │
+│ 2025   ┆ D.Prescott ┆ 654       ┆ 0.169            ┆ 82.534            │
+│ 2025   ┆ P.Mahomes  ┆ 586       ┆ 0.167            ┆ 72.757            │
+│ 2025   ┆ D.Jones    ┆ 426       ┆ 0.159            ┆ 49.450            │
+│ 2025   ┆ M.Jones    ┆ 310       ┆ 0.131            ┆ 27.209            │
+└────────┴────────────┴───────────┴──────────────────┴───────────────────┘
+
+Accumulated value above average: minimum 100 dropbacks
+shape: (10, 5)
+┌────────┬────────────┬───────────┬──────────────────┬───────────────────┐
+│ season ┆ player     ┆ dropbacks ┆ epa_per_dropback ┆ epa_above_average │
+│ ---    ┆ ---        ┆ ---       ┆ ---              ┆ ---               │
+│ i32    ┆ str        ┆ u32       ┆ f64              ┆ f64               │
+╞════════╪════════════╪═══════════╪══════════════════╪═══════════════════╡
+│ 2025   ┆ D.Maye     ┆ 601       ┆ 0.316            ┆ 164.276           │
+│ 2025   ┆ M.Stafford ┆ 624       ┆ 0.223            ┆ 112.315           │
+│ 2025   ┆ J.Love     ┆ 483       ┆ 0.259            ┆ 104.248           │
+│ 2025   ┆ J.Goff     ┆ 619       ┆ 0.177            ┆ 82.664            │
+│ 2025   ┆ D.Prescott ┆ 654       ┆ 0.169            ┆ 82.534            │
+│ 2025   ┆ P.Mahomes  ┆ 586       ┆ 0.167            ┆ 72.757            │
+│ 2025   ┆ J.Allen    ┆ 547       ┆ 0.172            ┆ 70.294            │
+│ 2025   ┆ B.Purdy    ┆ 313       ┆ 0.206            ┆ 51.106            │
+│ 2025   ┆ D.Jones    ┆ 426       ┆ 0.159            ┆ 49.450            │
+│ 2025   ┆ B.Nix      ┆ 669       ┆ 0.114            ┆ 47.231            │
+└────────┴────────────┴───────────┴──────────────────┴───────────────────┘
+
+Cohort: data/processed/20260915T175356816127Z/dropbacks.parquet
+Leaderboard: reports/tables/20260915T175356816127Z/passing_baseline.csv
+Manifest: data/metadata/20260915T175356816127Z/cohort_manifest.json

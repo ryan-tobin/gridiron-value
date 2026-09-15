@@ -1,0 +1,32 @@
+Reference participants: 110
+Reference dropbacks: 20,116
+League adjusted EPA/dropback: 0.052351
+Weighted SD of player rates: 0.189531
+
+Experimental Pass+ leaderboard:
+Resampled bounds describe game variability, not isolated skill.
+shape: (15, 7)
+┌──────────────┬───────┬───────────┬───────┬───────────────┬────────────────┬─────────────────┐
+│ player       ┆ games ┆ dropbacks ┆ Pass+ ┆ resampled_low ┆ resampled_high ┆ adjusted_EPA_AA │
+│ ---          ┆ ---   ┆ ---       ┆ ---   ┆ ---           ┆ ---            ┆ ---             │
+│ str          ┆ i64   ┆ i64       ┆ i64   ┆ i64           ┆ i64            ┆ f64             │
+╞══════════════╪═══════╪═══════════╪═══════╪═══════════════╪════════════════╪═════════════════╡
+│ L.Jackson    ┆ 17    ┆ 538       ┆ 124   ┆ 113           ┆ 138            ┆ 164.9           │
+│ J.Allen      ┆ 16    ┆ 539       ┆ 119   ┆ 109           ┆ 130            ┆ 132.6           │
+│ J.Goff       ┆ 17    ┆ 581       ┆ 118   ┆ 105           ┆ 131            ┆ 131.8           │
+│ T.Tagovailoa ┆ 11    ┆ 425       ┆ 113   ┆ 99            ┆ 125            ┆ 68.0            │
+│ B.Mayfield   ┆ 17    ┆ 651       ┆ 111   ┆ 100           ┆ 123            ┆ 91.4            │
+│ B.Purdy      ┆ 15    ┆ 525       ┆ 111   ┆ 99            ┆ 122            ┆ 71.0            │
+│ J.Burrow     ┆ 17    ┆ 721       ┆ 110   ┆ 102           ┆ 117            ┆ 88.1            │
+│ J.Daniels    ┆ 17    ┆ 597       ┆ 110   ┆ 100           ┆ 119            ┆ 71.8            │
+│ P.Mahomes    ┆ 16    ┆ 652       ┆ 109   ┆ 102           ┆ 115            ┆ 71.6            │
+│ J.Hurts      ┆ 15    ┆ 437       ┆ 108   ┆ 98            ┆ 119            ┆ 45.8            │
+│ J.Love       ┆ 15    ┆ 451       ┆ 107   ┆ 99            ┆ 117            ┆ 42.0            │
+│ J.Herbert    ┆ 17    ┆ 573       ┆ 106   ┆ 96            ┆ 116            ┆ 46.3            │
+│ D.Carr       ┆ 10    ┆ 295       ┆ 106   ┆ 99            ┆ 116            ┆ 22.1            │
+│ K.Murray     ┆ 17    ┆ 611       ┆ 105   ┆ 97            ┆ 115            ┆ 41.1            │
+│ M.Penix      ┆ 5     ┆ 113       ┆ 104   ┆ 97            ┆ 116            ┆ 6.3             │
+└──────────────┴───────┴───────────┴───────┴───────────────┴────────────────┴─────────────────┘
+
+Report: reports/tables/20260915T175356430768Z/pass_plus_leaderboard.csv
+Manifest: data/metadata/20260915T175356430768Z/pass_plus_manifest.json
