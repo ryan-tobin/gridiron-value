@@ -1,30 +1,72 @@
 # Gridiron Value
 
-Reproducible research into NFL offensive production, inspired by baseball’s use of context-adjusted statistics and value above average.
+Reproducible football analytics for understanding every player, every team, and every situation.
 
-The first implementation, **Pass+**, presents opponent-adjusted production on a player’s eligible dropbacks. It pairs an efficiency index with accumulated value, workload, and a game-resampling diagnostic.
+Gridiron Value is an experimental NFL analytics platform inspired by the way Baseball Savant combines comprehensive data, player profiles, context-adjusted metrics, historical records, and visual exploration in one system.
 
-**Status: experimental research prototype.** The implementation and results documented here reflect work completed through September 15, 2026. Pass+ is a working name, and v0.1 describes the current research specification rather than a finalized player-evaluation standard.
+The project begins with **Pass+**, an opponent-adjusted production metric for eligible quarterback dropbacks. It is expanding into a complete football data layer with:
 
-## What the project measures
+- position-specific player metrics;
+- team and opponent profiles;
+- historical player and team statistics;
+- game-state and situational analysis;
+- participation and workload tracking;
+- current-season and eventually real-time reporting; and
+- an operational foundation suitable for NFL gameday decision support.
 
-The initial question is:
+**Current status: experimental research and data-platform prototype.** The research outputs are useful, inspectable, and reproducible, but the project is not yet an official player-evaluation standard, live production service, or causal measure of individual talent.
 
-> How productive was an offense on a player’s dropbacks, after a model-based adjustment for defensive opponents?
+## Vision
 
-Eligible dropbacks include passes, sacks, and scrambles. The metric retains contributions from receivers, blockers, and play design. It does **not** isolate quarterback talent or estimate wins above replacement.
+The long-term goal is a football equivalent of a modern baseball analytics platform:
 
-The project builds on existing EPA and football-analytics research. The standardized index is a presentation transform, not a claim of new predictive information or an entirely new statistical concept.
-
-| Output | Meaning |
+| Surface | Intended capability |
 | --- | --- |
-| EPA per dropback | Observed production efficiency in the eligible cohort |
-| EPA above league average | Accumulated production relative to the season’s average eligible dropback |
-| Schedule adjustment | Estimated defensive-opponent correction, available per play, per dropback, and in total |
-| Opponent-adjusted EPA per dropback | Observed efficiency plus the schedule correction |
-| Opponent-adjusted EPA above average | Accumulated adjusted production relative to the league reference |
-| **Pass+** | A standardized presentation of adjusted efficiency, centered at 100 |
-| Game-resampling range | Conditional variability in rates when a player’s observed games are resampled |
+| Player profiles | A single page for each player with workload, production, efficiency, role, usage, context, peer comparisons, and historical trends |
+| Team profiles | Offensive, defensive, special-teams, roster, matchup, and situational performance views |
+| Position metrics | Metrics designed for the responsibilities of quarterbacks, backs, receivers, tight ends, offensive linemen, defensive linemen, linebackers, defensive backs, specialists, and returners |
+| Historical explorer | Season, game-log, career-window, leaderboard, and era-aware comparisons |
+| Situational analysis | Performance by down, distance, field position, score differential, time remaining, personnel, formation, coverage, pressure, red zone, goal line, two-minute, and other game states when the data supports them |
+| Current-season center | A reproducible view of what is available now, what is incomplete, and how recently each feed was refreshed |
+| Gameday tools | Low-latency, auditable views for matchup preparation, live decision support, substitution/workload monitoring, and postgame review |
+
+The project will prioritize transparent definitions and evidence over a single opaque â€œplayer rating.â€ A number should be accompanied by its denominator, context, uncertainty, source data, and limitations.
+
+## Current checkpoint
+
+The current implementation has completed the first end-to-end data foundation for the 2026 season and the historical Pass+ research pipeline.
+
+| Area | Current result |
+| --- | --- |
+| Historical Pass+ | 2017â€“2025; 180,348 eligible dropbacks; 992 player-seasons |
+| Historical display analysis | 329 player-seasons qualify at a 200-dropback minimum |
+| Chronological validation | Nine seasons evaluated with an expanding earlier-week training window; defense reduced test MSE in every season in the current run |
+| 2026 feed coverage | 10/10 requested feeds available for the audited snapshot |
+| 2026 identity resolution | 1,489 normal resolutions, 1 reviewed exact-record override, 2 unresolved snap rows |
+| Production player-game table | 1,117 production-attached player-game rows |
+| Participation table | 1,490 resolved participants, including 378 snap-only participants |
+| Position metrics | 1,117 metric rows with QB, RB, WR, TE, and all-position outputs |
+| Validation | The current branch has a passing automated test suite; run `python -m pytest -q` for the exact local count |
+
+Generated status reports are written under `reports/tables/project_status_<timestamp>/`. Each report includes milestone tables, feed coverage, chronological validation, CSV summaries, a lightweight HTML dashboard, and a provenance manifest.
+
+## What Pass+ measures
+
+The first research question is:
+
+> How productive was an offense on a player's eligible dropbacks after a model-based adjustment for defensive opponents?
+
+The eligible-dropback cohort currently includes passes, sacks, and scrambles. It retains shared contributions from receivers, blockers, play design, and team context. It does **not** isolate quarterback talent, estimate wins above replacement, or make a causal claim about any individual player.
+
+Pass+ combines:
+
+- observed EPA per eligible dropback;
+- EPA above the season's league reference;
+- an opponent adjustment derived from held-out team effects;
+- workload and accumulated adjusted production; and
+- a conditional game-resampling diagnostic.
+
+The model is a research instrument and presentation layer, not a claim that the transformed index contains information unavailable in its EPA and context inputs.
 
 ## Reading Pass+
 
@@ -42,7 +84,7 @@ $$
 \sigma = \sqrt{\frac{\sum_j N_j(r_j-\mu)^2}{\sum_j N_j}}
 $$
 
-Here, $N_j$ is the player’s eligible dropback count. The standard deviation describes **player-season rates**, not individual play outcomes.
+Here, $N_j$ is the player's eligible dropback count. The standard deviation describes player-season rates, not individual play outcomes.
 
 | Pass+ | Interpretation |
 | ---: | --- |
@@ -50,181 +92,234 @@ Here, $N_j$ is the player’s eligible dropback count. The standard deviation de
 | 115 | One weighted standard deviation above the reference |
 | 85 | One weighted standard deviation below the reference |
 
-**120 does not mean 20% better than average.** Pass+ is a standardized index, not a percentage-above-average measure like baseball’s wRC+.
+**120 does not mean 20% better than average.** Pass+ is a standardized index, not a percentage-above-average measure such as baseball's wRC+.
 
-Every eligible participant contributes to the reference, including players below the leaderboard’s display threshold. Changing the display threshold does not change scores. Scores are not capped, and each season has its own reference parameters.
+Every eligible participant contributes to the reference, including players below a leaderboard's display threshold. Changing the display threshold does not change the scores. Scores are not capped, and every season has its own reference parameters.
 
-The index describes standing within a season’s production distribution. Equal scores in different seasons do not establish equal absolute ability or identical scoring environments.
+Equal scores in different seasons do not establish equal absolute ability or identical scoring environments.
 
-## Methodology
+## Position-specific metrics
 
-### 1. Data acquisition
+The current-season metric layer is deliberately transparent. Rates are null when their denominator is zero or unavailable, rather than silently treating missing production as zero. EPA-based rates retain shared player, blocking, scheme, and team contributions.
 
-Play-by-play data is loaded through `nflreadpy` from nflverse. Each download creates a timestamped, unfiltered snapshot of the returned dataframe, serialized locally as Parquet.
+### Common workload and context fields
 
-Acquisition records include source information, retrieval time, row counts, schema, package versions, and local file checksums. The local Parquet checksum identifies the saved file; it does not identify the original upstream file’s bytes.
+- offensive, defensive, and special-teams snaps;
+- snap percentages where available;
+- total participation snaps;
+- season, week, game, team, opponent, position, and position group;
+- production-attached versus snap-only participation status;
+- touches, targets, and other role-specific denominators;
+- source identity status and provenance; and
+- available Next Gen Stats context.
 
-### 2. Eligible dropbacks
+### Quarterbacks
 
-The cohort applies these rules sequentially:
+- attempts, completions, completion rate, passing yards, and passing yards per attempt;
+- passing EPA and passing EPA per attempt;
+- passing touchdowns and touchdown rate;
+- interceptions and interception rate;
+- sacks suffered and sack-rate proxy;
+- dropbacks proxy, explicitly distinguished from the finalized Pass+ eligible-dropback definition;
+- CPOE/expected completion context where available;
+- time to throw, intended air yards, completed air yards, aggressiveness, and air-yards-to-sticks context where available; and
+- game-state and opponent splits as the situational layer matures.
 
-1. Keep regular-season rows.
-2. Keep rows with `qb_dropback == 1`.
-3. Exclude two-point attempts.
-4. Exclude spikes and kneel-downs.
-5. Keep supported play types, `pass` and `run`.
-6. Require finite EPA.
+### Running backs and fullbacks
 
-Unknown eligibility conditions fail the corresponding rule. Exclusion counts are sequential: a row removed by one rule is not counted again by later rules.
+- carries, rushing yards, yards per carry, and rushing EPA;
+- rushing EPA per carry;
+- rushing touchdowns and explosive-run rate;
+- expected rush yards and rush yards over expected from NGS where available;
+- rush yards over expected per attempt;
+- attempts against eight or more defenders and time to line of scrimmage where available;
+- targets, receptions, receiving production, and receiving efficiency; and
+- workload, snap, personnel, and game-state splits.
 
-Penalty flags alone do not exclude a row. A row must still satisfy the other eligibility conditions; `no_play` rows fail the supported-play-type rule. This policy remains a candidate for sensitivity analysis.
+### Wide receivers and tight ends
 
-The pipeline stops on missing or duplicate play keys, conflicting player identifiers, or unidentified eligible dropbacks.
+- targets, receptions, catch rate, receiving yards, and yards per target;
+- receiving EPA and receiving EPA per target;
+- receiving touchdowns;
+- yards after catch and YAC per reception;
+- explosive-reception rate;
+- target share, air-yards share, and WOPR where available;
+- average separation, average cushion, intended air yards, expected YAC, and YAC above expectation from NGS where available; and
+- alignment, coverage, personnel, route, and situation splits as charting support expands.
 
-### 3. Player attribution
+### Offensive line
 
-Use `passer_id` as the primary dropback actor identifier. If it is missing, use `rusher_player_id` **only when `qb_scramble == 1`**. Record each fallback.
+The participation foundation now preserves offensive-line snap records, including players who do not receive standard skill-position production rows. The next OL layer will focus on:
 
-The resulting field is `dropback_player_id`. Eligible participants are retained regardless of roster position, so unusual dropback actors are not automatically reassigned to a team’s usual quarterback.
+- offensive snap share and continuity;
+- pass-blocking and run-blocking context when a licensed or sufficiently detailed source is available;
+- pressure, sack, hit, and hurry responsibility with explicit attribution rules;
+- penalties and penalty impact;
+- position, alignment, and replacement/continuity effects; and
+- unit-level rather than falsely precise individual credit where the data cannot support individual attribution.
 
-The 2025 audit illustrates why this matters: all 1,089 flagged regular-season dropbacks missing `passer_player_id` were scrambles. The broader `passer_id` covered 1,087 of them, and two additional actors were recovered through the scramble-specific runner fallback.
+### Defensive line, linebackers, and defensive backs
 
-### 4. Descriptive baseline
+The player-game and participation layers preserve defensive players even when standard production feeds are incomplete. Planned defensive metrics include:
 
-Calculate EPA totals and rates using the same eligible plays:
+- defensive snap share and role;
+- tackles, tackles for loss, sacks, pressures, hits, hurries, and disruption rates;
+- forced fumbles, pass breakups, interceptions, and coverage outcomes;
+- missed tackles and penalties when consistently sourced;
+- target, catch, separation, and coverage context where charting supports it;
+- pressure and coverage situation splits; and
+- team- and scheme-aware context rather than assigning all defensive outcomes to one player.
 
-$$
-\mathrm{EPA\ above\ average}_j
-=\sum_{i\in j}\mathrm{EPA}_i-N_j\overline{\mathrm{EPA}}_{\mathrm{season}}
-$$
+### Specialists and returners
 
-The league reference weights plays equally. It is not an unweighted average of player averages. Player totals are grouped by season and stable player ID, combining production across teams when a player changes teams.
+Planned specialist coverage includes:
 
-### 5. Opponent model
+- field-goal and extra-point accuracy by distance and situation;
+- punting distance, hang time, net yards, inside-20 rate, touchbacks, and return context;
+- kickoff and punt return workload, yards, explosive returns, and touchdown rate;
+- special-teams snap share; and
+- game-state leverage and field-position value.
 
-Fit an additive team model:
+The project will not publish a metric merely because a source column exists. Each metric needs a documented denominator, attribution rule, coverage assessment, and validation test.
 
-$$
-\mathrm{EPA}_i=\beta_0+\alpha_{\mathrm{offense}(i)}
-+\delta_{\mathrm{defense}(i)}+\epsilon_i
-$$
+## Data architecture
 
-The current candidate uses separate ridge penalties:
+The pipeline is organized as explicit, verifiable layers:
 
-| Setting | Value |
-| --- | ---: |
-| Offensive-team penalty | 100 |
-| Defensive-team penalty | 1,000 |
-| Evaluation folds | 5 |
-| Grouping unit | Entire game |
-
-Stronger defensive shrinkage was selected after the original equal-penalty specification failed to replicate consistently. Feature-group scaling implements the separate penalties while preserving EPA units in extracted defensive contributions.
-
-Three prediction references are compared: training-set league mean, offense-only, and offense-plus-defense. Preprocessing and regression are fitted inside each training fold.
-
-This is **retrospective within-season evaluation**. Training folds can include games played later than the held-out game. Existing upstream EPA values are treated as a fixed target. The experiment does not establish chronological forecasting performance.
-
-### 6. Schedule correction
-
-For each play, extract only the defensive contribution from a model trained without that play’s game. Do not subtract the complete prediction, which would also remove offensive production.
-
-Let $d_i$ be that held-out defensive contribution and $\bar d$ its average over all eligible season dropbacks:
-
-$$
-c_i=\bar d-d_i,
-\qquad
-\mathrm{Adjusted\ EPA}_i=\mathrm{EPA}_i+c_i
-$$
-
-A positive correction credits production against defenses estimated to suppress EPA. A negative correction discounts production against defenses estimated to allow more EPA.
-
-The final centering uses the complete season’s exposure mix. Corrections sum to zero, preserving league-wide total EPA and its mean. Player-level adjusted EPA above average consequently also balances to zero across the complete reference population.
-
-### 7. Game-resampling diagnostics
-
-Two diagnostics are implemented:
-
-- **Model comparison:** resample paired game-level errors while retaining dropback weighting. The approximate percentile interval is conditional on existing fitted models and folds. Shared teams and overlapping training sets create dependence not fully captured by this procedure.
-- **Player variability:** resample each player’s observed games, pairing game EPA totals with their dropback counts. Recalculate the rate as a ratio of totals. Hold schedule corrections and the Pass+ reference fixed.
-
-Player ranges describe conditional resampled-performance variability. They are not confidence intervals for isolated talent or uncertainty in already-observed season totals. They omit opponent-model refitting uncertainty and do not constitute pairwise ranking tests.
-
-## Research results
-
-The initial model used offense and defense penalties of 100. Its 2025 improvement did not replicate consistently across 2020–2024, prompting the stronger defensive-shrinkage candidate.
-
-The table below reports the candidate with offense penalty 100 and defense penalty 1,000. Positive MSE reduction means offense-plus-defense outperformed offense-only on held-out plays.
-
-| Season | Role in research | MSE reduction | Folds improved |
-| --- | --- | ---: | ---: |
-| 2017 | Additional frozen-candidate evaluation | +0.002267 | 5/5 |
-| 2018 | Additional frozen-candidate evaluation | +0.000330 | 3/5 |
-| 2019 | Additional frozen-candidate evaluation | +0.005123 | 5/5 |
-| 2020 | Development | +0.003328 | 5/5 |
-| 2021 | Development | +0.000268 | 2/5 |
-| 2022 | Development | +0.000435 | 4/5 |
-| 2023 | Development | +0.002224 | 5/5 |
-| 2024 | Development | −0.000256 | 3/5 |
-| 2025 | Development | +0.004462 | 5/5 |
-
-The candidate improved MSE in eight of nine inspected seasons. Six seasons informed development, so these are **not nine independent validation results**. Gains were small. Among the three additional evaluation seasons, the conditional intervals were positive in 2017 and 2019; the 2018 interval included zero.
-
-Predictive improvements support investigating the adjustment but do not prove causal defensive effects or accurate individual player attribution.
-
-## 2025 reference output
-
-Reference population: **101 participants and 19,734 eligible dropbacks**.
-
-- League adjusted EPA per dropback: approximately **0.043145**.
-- Weighted SD of player-season rates: approximately **0.187506**.
-- Two documented scramble identity fallbacks.
-- Schedule corrections sum to zero within numerical precision.
-
-Selected results, using a display minimum of 100 dropbacks:
-
-| Player | Games with eligible dropbacks | Dropbacks | Pass+ | Resampled index range | Adjusted EPA above average |
-| --- | ---: | ---: | ---: | --- | ---: |
-| D. Maye | 17 | 601 | 120 | 111–132 | +152.6 |
-| J. Love | 15 | 483 | 117 | 108–126 | +101.9 |
-| M. Stafford | 17 | 624 | 114 | 105–123 | +110.7 |
-| B. Purdy | 9 | 313 | 114 | 98–129 | +55.2 |
-| P. Mahomes | 14 | 586 | 111 | 101–120 | +81.8 |
-| J. Goff | 17 | 619 | 111 | 100–122 | +84.2 |
-| J. Allen | 16 | 547 | 110 | 100–120 | +68.1 |
-| D. Prescott | 17 | 654 | 110 | 101–118 | +78.1 |
-| D. Jones | 13 | 426 | 109 | 97–121 | +49.1 |
-| M. Jones | 8 | 310 | 108 | 98–119 | +31.0 |
-
-Index values are rounded for display; saved CSVs preserve full precision. Equal displayed scores can therefore appear in a particular sort order without implying a meaningful distinction. The resampling ranges carry the limitations described above.
-
-## Installation
-
-Use Python 3.11 or newer and run these commands from the repository root. The activation command below is for Bash or Zsh on macOS, Linux, or WSL.
-
-```bash
-python3 -m venv .venv
-source .venv/bin/activate
-python -m pip install --upgrade pip
-python -m pip install -e ".[dev]"
+```text
+nflverse snapshots and source feeds
+             |
+             v
+     coverage audit
+             |
+             v
+ explicit player identity resolution
+             |
+       +-----+-----+
+       |           |
+       v           v
+ production     participation
+ player-game    player-game
+       |           |
+       +-----+-----+
+             v
+ position-specific metrics
+             |
+       +-----+----------------+
+       |                      |
+       v                      v
+ historical/context         current-season
+ research outputs            status and profiles
+             |
+             v
+ situational and gameday services
 ```
 
-In VS Code, select the interpreter inside `.venv` using **Python: Select Interpreter**.
+The architecture intentionally separates:
 
-Dependencies are declared in `pyproject.toml`. The workflow uses nflreadpy, Polars, NumPy, SciPy, scikit-learn, and Matplotlib; development dependencies include pytest, Ruff, and ipykernel. The bootstrap code uses SciPy’s `rng` argument, available in SciPy 1.15 and newer.
+1. **Availability** - what source rows were retrieved.
+2. **Identity** - which source records can be linked with explicit evidence.
+3. **Participation** - who was on the field, including snap-only players.
+4. **Production** - what standard statistics and EPA-based fields exist.
+5. **Metrics** - transparent transformations with denominators and null rules.
+6. **Context** - opponent, game state, personnel, alignment, and matchup information.
+7. **Presentation** - reports, player profiles, dashboards, and eventual services.
+
+Missing production is not automatically interpreted as zero production. Unresolved identity rows remain preserved for review.
+
+## Current-season workflow
+
+Run the commands from the repository root with the project environment active. Each stage prints a timestamped manifest path. Replace placeholders with paths from your own run; they are placeholders, not literal commands.
+
+### 1. Audit source coverage
 
 ```bash
-python -m pip check
-python -m ruff check src/gridiron_value tests
-python -m pytest -q
+python -m gridiron_value.coverage_audit \
+  --season 2026
+
+COVERAGE_MANIFEST="reports/tables/coverage_REPLACE_WITH_RUN_ID/coverage_manifest.json"
 ```
 
-## Running the 2025 pipeline
+The coverage audit records feed availability, week counts, schema fields, null/nonfinite values, identifier matches, and scored schedule games missing from PBP.
 
-Run all commands from the repository root with the virtual environment active. Each stage prints its output manifest path. Replace the `REPLACE_WITH_...` portions below with the paths from your own run; they are placeholders, not commands that automatically discover the latest result.
+### 2. Resolve player identity
 
-Downloaded and generated data are excluded from Git by default. A fresh clone needs new downloads or access to preserved snapshots. Recorded historical run IDs do not themselves restore the associated files.
+```bash
+python -m gridiron_value.player_identity \
+  --coverage-manifest "$COVERAGE_MANIFEST" \
+  --reuse-identity-manifest reports/tables/player_identity_PREVIOUS_RUN/identity_manifest.json \
+  --overrides docs/identity_overrides_2026.json
 
-### Download and inspect
+IDENTITY_MANIFEST="reports/tables/player_identity_REPLACE_WITH_RUN_ID/identity_manifest.json"
+```
+
+Identity resolution uses explicit mappings. It preserves `missing_pfr_id`, `unmapped`, `conflict`, `resolved`, and reviewed `resolved_override` statuses. Manual overrides must identify the exact record, selected candidate, reason, and evidence.
+
+### 3. Build player-game production joins
+
+```bash
+python -m gridiron_value.player_game \
+  --coverage-manifest "$COVERAGE_MANIFEST" \
+  --identity-manifest "$IDENTITY_MANIFEST"
+
+PLAYER_GAME_MANIFEST="reports/tables/player_game_REPLACE_WITH_RUN_ID/player_game_manifest.json"
+```
+
+This stage joins player statistics, resolved snaps, and available Next Gen Stats fields. Missing snaps remain null rather than being converted to zero.
+
+### 4. Build participation records
+
+```bash
+python -m gridiron_value.participation \
+  --identity-manifest "$IDENTITY_MANIFEST" \
+  --player-game-manifest "$PLAYER_GAME_MANIFEST"
+
+PARTICIPATION_MANIFEST="reports/tables/participation_REPLACE_WITH_RUN_ID/participation_manifest.json"
+```
+
+Participation records include snap-only players. They are the foundation for offensive-line, defensive, and special-teams profiles where conventional player-stat feeds may omit a player.
+
+### 5. Calculate position metrics
+
+```bash
+python -m gridiron_value.position_metrics \
+  --player-game-manifest "$PLAYER_GAME_MANIFEST" \
+  --participation-manifest "$PARTICIPATION_MANIFEST"
+
+POSITION_METRICS_MANIFEST="reports/tables/position_metrics_REPLACE_WITH_RUN_ID/position_metrics_manifest.json"
+```
+
+The current production output contains all-position metrics plus QB, RB, WR, and TE tables. Additional position groups will be added only after their attribution and denominator contracts are defined.
+
+### 6. Generate the project status report
+
+```bash
+python -m gridiron_value.project_status \
+  --historical-analysis-manifest reports/tables/historical_analysis_REPLACE_WITH_RUN_ID/analysis_manifest.json \
+  --chronological-manifest reports/tables/chronological_REPLACE_WITH_RUN_ID/chronological_manifest.json \
+  --coverage-manifest "$COVERAGE_MANIFEST" \
+  --identity-manifest "$IDENTITY_MANIFEST" \
+  --player-game-manifest "$PLAYER_GAME_MANIFEST" \
+  --participation-manifest "$PARTICIPATION_MANIFEST" \
+  --position-metrics-manifest "$POSITION_METRICS_MANIFEST"
+```
+
+The status run writes:
+
+- `report.md` - GitHub-readable milestone, coverage, and validation tables;
+- `dashboard.html` - a local visual view;
+- `milestones.csv`;
+- `coverage_summary.csv`;
+- `chronological_validation.csv`; and
+- `project_status_manifest.json` with source and output checksums.
+
+The reproducible sequence is **generate â†’ inspect â†’ commit the verified checkpoint**.
+
+## Historical Pass+ workflow
+
+The historical pipeline remains the research foundation for Pass+.
+
+### Acquire and inspect raw seasons
 
 ```bash
 python -m gridiron_value.data --season 2025
@@ -235,9 +330,7 @@ python -m gridiron_value.inspect_dropbacks \
   --manifest "$RAW_MANIFEST"
 ```
 
-Inspect identifier coverage and flagged play categories before interpreting any results. The diagnostic exports unresolved and conflicting identity records for review.
-
-### Build the cohort and descriptive baseline
+### Build the eligible cohort
 
 ```bash
 python -m gridiron_value.cohort \
@@ -247,9 +340,7 @@ python -m gridiron_value.cohort \
 COHORT_MANIFEST="data/metadata/REPLACE_WITH_COHORT_RUN_ID/cohort_manifest.json"
 ```
 
-The output includes the sequential exclusion report, eligible cohort, raw baseline, and identity fallback records.
-
-### Calculate the frozen candidate’s schedule corrections
+### Estimate schedule corrections
 
 ```bash
 python -m gridiron_value.schedule \
@@ -259,7 +350,7 @@ python -m gridiron_value.schedule \
 SCHEDULE_MANIFEST="data/metadata/REPLACE_WITH_SCHEDULE_RUN_ID/schedule_manifest.json"
 ```
 
-The schedule module uses offense penalty 100 and defense penalty 1,000. Its saved leaderboard includes all eligible participants, regardless of the display minimum.
+The frozen candidate uses an offense penalty of 100 and a defense penalty of 1,000.
 
 ### Calculate player-game variability
 
@@ -282,132 +373,265 @@ python -m gridiron_value.reporting \
   --min-dropbacks 100
 ```
 
-The two manifests must refer to the same schedule run and scored-play snapshot. To display additional players, first generate variability records with a sufficiently low dropback threshold.
+The schedule and variability manifests must refer to the same scored-play snapshot and compatible run settings.
 
-## Reproducing the research experiments
+## Research methodology
 
-### Original equal-penalty model
+### Eligible dropbacks
 
-The `adjustment` CLI remains the original equal-penalty comparison. Supplying `--alpha 100` sets both penalties to 100 through its default behavior; this is not the frozen stronger-shrinkage candidate.
+The cohort applies these rules sequentially:
 
-```bash
-python -m gridiron_value.adjustment \
-  --cohort-manifest "$COHORT_MANIFEST" \
-  --alpha 100 \
-  --folds 5
+1. Keep regular-season rows.
+2. Keep rows with `qb_dropback == 1`.
+3. Exclude two-point attempts.
+4. Exclude spikes and kneel-downs.
+5. Keep supported play types, currently `pass` and `run`.
+6. Require finite EPA.
 
-ADJUSTMENT_MANIFEST="data/metadata/REPLACE_WITH_ADJUSTMENT_RUN_ID/adjustment_manifest.json"
+Unknown eligibility conditions fail the corresponding rule. Exclusion counts are sequential: a row removed by one rule is not counted again later.
 
-python -m gridiron_value.uncertainty \
-  --adjustment-manifest "$ADJUSTMENT_MANIFEST" \
-  --resamples 10000 \
-  --seed 2026
-```
+Penalty flags alone do not exclude a row. A row must still satisfy the other eligibility conditions; `no_play` rows fail the supported-play-type rule. This policy remains a documented sensitivity-analysis candidate.
 
-### Defensive-penalty comparison
+The pipeline stops on missing or duplicate play keys, conflicting player identifiers, or unidentified eligible dropbacks.
 
-```bash
-python -m gridiron_value.shrinkage \
-  --cohort-manifests "$COHORT_MANIFEST"
-```
+### Player attribution
 
-Additional cohort manifest paths can follow the same argument. This compares defense penalties 100 and 1,000 while holding the offense penalty at 100 and retaining the same folds.
+`passer_id` is the primary dropback actor identifier. If it is missing, `rusher_player_id` is used only when `qb_scramble == 1`. Each fallback is recorded.
 
-### Frozen-candidate historical replication
+The resulting field is `dropback_player_id`. Eligible participants are retained regardless of roster position, so unusual dropback actors are not automatically reassigned to a team's usual quarterback.
 
-```bash
-python -m gridiron_value.replicate --seasons 2017 2018 2019
-```
+### Opponent model
 
-The current runner uses offense penalty 100, defense penalty 1,000, and five game-grouped folds. It downloads snapshots and checkpoints each completed season. Historical results produced before the penalty change retain their original settings in their manifests.
+The current Pass+ research model is additive:
 
-To rerun the candidate across all inspected seasons:
+$$
+\mathrm{EPA}_i = \beta_0 + \alpha_{\mathrm{offense}(i)} + \delta_{\mathrm{defense}(i)} + \epsilon_i
+$$
 
-```bash
-python -m gridiron_value.replicate \
-  --seasons 2017 2018 2019 2020 2021 2022 2023 2024 2025
-```
+| Setting | Value |
+| --- | ---: |
+| Offensive-team penalty | 100 |
+| Defensive-team penalty | 1,000 |
+| Evaluation folds | 5 |
+| Grouping unit | Entire game |
 
-This rerun does not create new independent validation evidence. The replication runner evaluates models; it does not automatically generate historical Pass+ presentations.
+Preprocessing and regression are fitted inside each training fold. The defensive contribution is extracted without using the player's own game when computing schedule corrections.
+
+### Schedule correction
+
+Let $d_i$ be the held-out defensive contribution and $\bar d$ its average over all eligible season dropbacks:
+
+$$
+c_i = \bar d - d_i,
+\qquad
+\mathrm{Adjusted\ EPA}_i = \mathrm{EPA}_i + c_i
+$$
+
+A positive correction credits production against defenses estimated to suppress EPA. A negative correction discounts production against defenses estimated to allow more EPA.
+
+The correction is centered on the complete season exposure mix. Corrections sum to zero within numerical precision, preserving league-wide total EPA and its mean.
+
+### Chronological evaluation
+
+The chronological module evaluates an expanding earlier-week training window within each season. Weeks before the selected cutoff are training only; later weeks are test windows. The model resets each season.
+
+This is a retrospective backtest using previously inspected seasons, not independent prospective validation. It does not establish live-feed availability, forecasting performance, causal defensive effects, replacement value, or individual talent attribution.
+
+### Resampling
+
+The project uses paired game-level resampling for model comparisons and player-game resampling for conditional variability. Player variability recalculates a rate as a ratio of resampled EPA totals to resampled dropbacks rather than averaging game rates.
+
+Ranges are conditional diagnostics. They are not confidence intervals for isolated talent, do not include complete model-refitting uncertainty, and do not constitute pairwise ranking tests.
+
+## Research results and interpretation
+
+The original equal-penalty model did not replicate consistently across the inspected seasons. The current frozen candidate uses stronger defensive shrinkage. The chronological run produced a modest defensive MSE improvement in every season from 2017 through 2025 in the current checkpoint.
+
+These results support continued investigation of opponent adjustment. They do not prove that the model has isolated defensive quality, predicted future games, or separated nearby players meaningfully.
+
+The historical analysis module produces:
+
+- season leaderboards;
+- all observed player-season histories;
+- multi-season player summaries;
+- threshold sensitivity tables;
+- Markdown reports; and
+- manifests linking each table to the source historical run.
+
+## Project status and reporting
+
+The project has two complementary records:
+
+- `docs/progress.md` - the durable explanation of decisions, findings, and workflow;
+- `reports/tables/project_status_<timestamp>/` - generated status snapshots tied to exact manifests.
+
+Generated reports should be inspected before they are committed as checkpoints. Do not manually edit generated tables to correct a number; fix the producing stage, rerun it, and preserve the new manifest.
+
+## Gameday product direction
+
+The research pipeline is being designed so it can eventually support NFL-style operational use, but that requires additional engineering beyond the current reports.
+
+### Preparation and pregame
+
+- opponent tendencies and matchup profiles;
+- player availability, roster, depth-chart, and role changes;
+- workload and participation expectations;
+- historical performance under comparable conditions;
+- uncertainty and sample-size warnings; and
+- exportable opponent-preparation reports.
+
+### Live game
+
+- current score, down, distance, clock, field position, possession, and win-probability context;
+- live player workload and participation;
+- opponent tendency updates as new plays arrive;
+- situational performance and matchup alerts;
+- explicit data freshness and feed-health indicators; and
+- human-readable explanations for every recommendation or alert.
+
+### Postgame
+
+- corrected final statistics;
+- play and player audit trails;
+- role and workload changes;
+- opponent-adjusted review;
+- coaching and roster decision support; and
+- versioned data revisions when upstream feeds change.
+
+Before gameday use, the system needs latency measurements, feed failure behavior, late-stat correction handling, role-based access, observability, reproducible deployment, and formal validation against operational decisions.
+
+## Roadmap
+
+### Completed foundations
+
+- frozen historical Pass+ specification;
+- historical 2017â€“2025 analysis;
+- chronological within-season validation;
+- current-season feed coverage audit;
+- explicit player identity registry and reviewed overrides;
+- production player-game joins;
+- participation records that retain snap-only players;
+- first position-specific metric tables; and
+- reproducible cross-stage project status dashboard.
+
+### Next milestones
+
+1. **Player profiles** - generate a Baseball-Savant-style profile from position metrics, participation, historical data, workload, percentiles, and peer context.
+2. **Team profiles** - add team identity, roster, opponent, unit, and matchup views.
+3. **Historical explorer** - expose player-season histories, game logs, leaderboards, and era-aware comparisons.
+4. **Situational metrics** - define game-state, down-distance, field-position, personnel, alignment, pressure, and coverage dimensions with explicit sample rules.
+5. **Defensive, OL, and special-teams metrics** - use participation and charting sources without overclaiming individual attribution.
+6. **Current-season refresh orchestration** - add repeatable updates, freshness checks, feed-health status, and correction-aware reruns.
+7. **Interactive application** - build the exploration layer after the metric contracts stabilize.
+8. **Gameday readiness** - benchmark latency, reliability, explainability, permissions, and operational workflows before any live decision-support claim.
+
+## Limitations and guardrails
+
+The current project has material limits:
+
+- team effects do not isolate an individual quarterback from supporting players or play design;
+- additive models do not represent every matchup interaction or change in team strength;
+- many position-specific outcomes require richer charting or tracking data than is currently available;
+- snap counts establish participation, not individual blocking, coverage, route, or assignment quality;
+- missing production rows must not be interpreted as zero production;
+- identity conflicts and unmapped records remain visible rather than being resolved by name guesses;
+- current-season snapshots are not certified live feeds;
+- upstream data can be revised after initial retrieval;
+- resampling omits some dependence and model-refitting uncertainty;
+- small predictive gains do not establish causal schedule corrections;
+- standardized scores are not talent-shrinkage estimates;
+- retrospective testing is not future-game forecasting;
+- Pass+ is not wins above replacement; and
+- no output should be used for a high-stakes roster, medical, employment, or financial decision without independent review.
+
+The project will prefer an honest null, an explicit â€œnot evaluatedâ€ status, or a review queue over a precise-looking metric unsupported by its source data.
 
 ## Repository organization
 
 | Path | Purpose |
 | --- | --- |
 | `pyproject.toml` | Package metadata, dependencies, and development configuration |
-| `src/gridiron_value/data.py` | Acquisition, schema audit, checksums, and shared JSON helpers |
+| `src/gridiron_value/data.py` | Acquisition, schema audits, checksums, and shared JSON helpers |
 | `src/gridiron_value/inspect_dropbacks.py` | Player identity and dropback-category diagnostics |
 | `src/gridiron_value/cohort.py` | Eligibility rules and player attribution |
 | `src/gridiron_value/baseline.py` | Descriptive rates and EPA above league average |
 | `src/gridiron_value/adjustment.py` | Team models and held-out evaluation |
 | `src/gridiron_value/uncertainty.py` | Conditional paired game-error resampling |
 | `src/gridiron_value/replicate.py` | Fixed-specification historical experiments |
-| `src/gridiron_value/shrinkage.py` | Separate defensive-penalty comparison |
+| `src/gridiron_value/shrinkage.py` | Defensive-penalty comparison |
 | `src/gridiron_value/schedule.py` | Defensive corrections and adjusted production |
 | `src/gridiron_value/variability.py` | Conditional player-game resampling |
-| `src/gridiron_value/reporting.py` | Pass+ reference and presentation |
-| `tests/` | Attribution, accounting, leakage, weighting, and transformation checks |
-| `notebooks/` | Exploratory analysis |
+| `src/gridiron_value/reporting.py` | Pass+ presentation and leaderboards |
+| `src/gridiron_value/historical_analysis.py` | Historical season, threshold, and player-window analysis |
+| `src/gridiron_value/chronological.py` | Expanding-window within-season validation |
+| `src/gridiron_value/coverage_audit.py` | Current-season feed and identifier coverage |
+| `src/gridiron_value/player_identity.py` | Explicit PFR/GSIS identity resolution and reviewed overrides |
+| `src/gridiron_value/player_game.py` | Production player-game joins |
+| `src/gridiron_value/participation.py` | Snap-based participation, including snap-only players |
+| `src/gridiron_value/position_metrics.py` | Transparent role-specific metric derivation |
+| `src/gridiron_value/project_status.py` | Cross-stage progress reports and dashboard |
+| `tests/` | Attribution, accounting, leakage, transformation, and reporting tests |
 | `docs/methodology.md` | Definitions, assumptions, and research design |
 | `docs/progress.md` | Decisions, findings, and experiment history |
-| `docs/results/` | Optional curated reference outputs committed with a checkpoint |
-| `data/raw/` | Unfiltered loader snapshots |
-| `data/interim/` | Intermediate data, including held-out predictions |
-| `data/processed/` | Eligible and scored dropback datasets |
-| `data/metadata/` | Provenance, reference parameters, and experiment manifests |
-| `reports/tables/` | Generated leaderboards and diagnostics |
+| `docs/identity_overrides_2026.json` | Reviewed exact-record identity overrides |
+| `docs/results/` | Optional curated reference outputs committed with checkpoints |
+| `data/raw/` | Unfiltered source snapshots |
+| `data/interim/` | Intermediate data and held-out predictions |
+| `data/processed/` | Eligible and scored datasets |
+| `data/metadata/` | Provenance, parameters, and experiment manifests |
+| `reports/tables/` | Generated leaderboards, diagnostics, and status reports |
 | `reports/figures/` | Generated visualizations |
+
+## Installation
+
+Use Python 3.11 or newer:
+
+```bash
+python3 -m venv .venv
+source .venv/bin/activate
+python -m pip install --upgrade pip
+python -m pip install -e ".[dev]"
+```
+
+In VS Code, select the interpreter inside `.venv` using **Python: Select Interpreter**.
+
+Dependencies are declared in `pyproject.toml`. The core workflow uses nflreadpy, Polars, NumPy, SciPy, scikit-learn, and Matplotlib. Development dependencies include pytest, Ruff, and ipykernel.
 
 ## Reproducibility and testing
 
-Manifests connect outputs to source snapshots and record settings, hashes, and relevant package versions. Downstream stages verify the source files they consume. Seeds make resampling repeatable within the recorded environment.
+Every important stage should record:
 
-Preserve the underlying data files as well as their manifests when exact future reproduction matters: upstream datasets may be revised, and a checksum alone cannot recover the original bytes. Package-version records also do not substitute for a fully locked environment.
+- the source snapshot and retrieval context;
+- row counts and schemas;
+- settings, thresholds, seeds, and package versions;
+- local checksums;
+- generated files; and
+- limitations or statuses that affect interpretation.
 
-Tests cover:
+Downstream stages verify the source files they consume. Seeds make resampling repeatable within the recorded environment.
 
-- Scramble-specific identity recovery and identifier conflicts.
-- Correct dropback denominators and season-specific league weighting.
-- Conservation of totals and zero-sum above-average values.
-- Game-grouped evaluation and exclusion of held-out outcomes from their own fitted predictions.
-- Equivalent behavior under equal penalties and stronger defensive shrinkage.
-- Correct extraction and sign of defensive effects.
-- Zero-sum schedule corrections.
-- Paired resampling with unequal game sizes.
-- Weighted Pass+ centering and dispersion.
+Preserve the underlying data files as well as their manifests when exact future reproduction matters. A checksum cannot recover the original bytes after an upstream dataset changes. Package-version records also do not substitute for a fully locked environment.
+
+Run the quality checks from the repository root:
 
 ```bash
+python -m pip check
 python -m ruff format src/gridiron_value tests
 python -m ruff check src/gridiron_value tests
 python -m pytest -q
 ```
 
-Passing implementation tests is not evidence that the statistical model is sufficient for every intended use. Model evaluation and accounting checks answer different questions.
-
-## Limitations and next research steps
-
-The current prototype has several material limits:
-
-- Team effects do not isolate an individual quarterback from supporting players or play design.
-- The additive model does not represent all matchup interactions or changes in team strength during a season.
-- There are no additional game-context predictors beyond the existing EPA target and team identities.
-- Five-fold game grouping introduces a partition choice whose effect on player corrections needs further assessment.
-- Conditional resampling omits model-refitting uncertainty and does not fully account for cross-game dependence.
-- The play-weighted distribution of player-season rates includes sampling noise; standardization is not a talent-shrinkage procedure.
-- Small predictive gains do not establish causal schedule corrections or meaningful separation between nearby player ranks.
-- Retrospective testing does not establish future-game forecasting, replacement value, or WAR.
-
-Planned work includes historical Pass+ presentations under the frozen specification, game-partition sensitivity, uncertainty from refitting the opponent model, and a separately designed chronological evaluation if forecasting becomes an objective. Alternative cohort and penalty treatments should be documented and evaluated explicitly.
-
-See the [methodology](docs/methodology.md) and [progress notebook](docs/progress.md) for the evolving research record.
+Passing implementation tests is not evidence that the statistical model is sufficient for every intended use. Model evaluation, data coverage, accounting checks, and operational readiness answer different questions.
 
 ## Data sources and prior work
 
-- [nflverse](https://github.com/nflverse): data and tools supporting the pipeline.
-- [nflreadpy](https://github.com/nflverse/nflreadpy): Python access to nflverse data.
-- [nflfastR](https://nflfastr.com/): play-by-play data and expected-points models.
-- [nflWAR: A Reproducible Method for Offensive Player Evaluation in Football](https://arxiv.org/abs/1802.00998): prior work on reproducible player-value estimation.
-- [scikit-learn Ridge](https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.Ridge.html), [ColumnTransformer](https://scikit-learn.org/stable/modules/generated/sklearn.compose.ColumnTransformer.html), and [GroupKFold](https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.GroupKFold.html): model implementation and evaluation tools.
-- [SciPy bootstrap](https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.bootstrap.html): paired resampling implementation.
+- [nflverse](https://github.com/nflverse) - data and tools supporting the pipeline.
+- [nflreadpy](https://github.com/nflverse/nflreadpy) - Python access to nflverse.
+- [nflfastR](https://nflfastr.com/) - play-by-play data and expected-points models.
+- [nflWAR: A Reproducible Method for Offensive Player Evaluation in Football](https://arxiv.org/abs/1802.00998) - prior work on reproducible football player-value estimation.
+- [scikit-learn Ridge](https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.Ridge.html) - team-effect model implementation.
+- [scikit-learn ColumnTransformer](https://scikit-learn.org/stable/modules/generated/sklearn.compose.ColumnTransformer.html) - fold-contained preprocessing.
+- [scikit-learn GroupKFold](https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.GroupKFold.html) - game-grouped evaluation support.
+- [SciPy bootstrap](https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.bootstrap.html) - paired resampling implementation.
 
 Downloaded datasets and dependencies retain their respective terms and attribution requirements. This README does not assign a license to third-party data or substitute for a project `LICENSE` file.
