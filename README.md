@@ -30,7 +30,7 @@ The long-term goal is a football equivalent of a modern baseball analytics platf
 | Current-season center | A reproducible view of what is available now, what is incomplete, and how recently each feed was refreshed |
 | Gameday tools | Low-latency, auditable views for matchup preparation, live decision support, substitution/workload monitoring, and postgame review |
 
-The project will prioritize transparent definitions and evidence over a single opaque â€œplayer rating.â€ A number should be accompanied by its denominator, context, uncertainty, source data, and limitations.
+The project will prioritize transparent definitions and evidence over a single opaque â€œplayer rating.- A number should be accompanied by its denominator, context, uncertainty, source data, and limitations.
 
 ## Current checkpoint
 
@@ -544,7 +544,7 @@ The current project has material limits:
 - Pass+ is not wins above replacement; and
 - no output should be used for a high-stakes roster, medical, employment, or financial decision without independent review.
 
-The project will prefer an honest null, an explicit â€œnot evaluatedâ€ status, or a review queue over a precise-looking metric unsupported by its source data.
+The project will prefer an honest null, an explicit â€œnot evaluated- status, or a review queue over a precise-looking metric unsupported by its source data.
 
 ## Repository organization
 
