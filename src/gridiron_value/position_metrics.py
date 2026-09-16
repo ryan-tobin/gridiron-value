@@ -1,5 +1,3 @@
-"""Derive transparent position-specific metrics from player-game statistics."""
-
 import argparse
 from datetime import datetime, timezone
 from importlib.metadata import version
