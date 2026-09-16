@@ -380,7 +380,7 @@ def production_table(profile, fields):
     )
 
 
-def render_profile(profile):
+def render_profile(profile, peer_html=None):
     groups = profile_groups(profile)
     visible_fields = {field for group in groups for field in GROUPS[group]}
     relevant_rates = {
@@ -407,6 +407,8 @@ def render_profile(profile):
         "<p>Values summarize observed games only. Game coverage shows games with "
         "an available value / observed games. Missing values are shown as unavailable.</p>"
     )
+    if peer_html is not None:
+        body += peer_html
     body += "<h2>Workload</h2>" + production_table(profile, SNAPS)
     for group in groups:
         body += f"<h2>{label(group)}</h2>" + production_table(profile, GROUPS[group])
@@ -504,7 +506,16 @@ def render_profile(profile):
         body += "</details>"
     body += (
         "<details><summary>Coverage and methodology</summary><ul>"
-        + "".join(f"<li>{html.escape(note)}</li>" for note in NOTES)
+        + "".join(
+            f"<li>{html.escape(note)}</li>"
+            for note in NOTES
+            if peer_html is None or "peer percentiles" not in note
+        )
+        + (
+            "<li>Sack-rate proxy excludes scrambles. Current-season Pass+ is not calculated.</li>"
+            if peer_html is not None
+            else ""
+        )
         + "</ul></details>"
     )
     return page(title, body)

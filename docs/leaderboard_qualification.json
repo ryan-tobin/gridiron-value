@@ -1,0 +1,8 @@
+{
+  "attempts": 20,
+  "attempts_plus_sacks": 20,
+  "carries": 10,
+  "targets": 5,
+  "receptions": 5,
+  "minimum_peers": 5
+}
