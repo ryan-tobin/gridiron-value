@@ -179,3 +179,40 @@ def test_build_records_inputs_outputs_and_no_pass_plus(tmp_path, monkeypatch):
         "pass_plus"
         not in pl.read_csv(tmp_path / state["files"]["player_totals"]["path"]).columns
     )
+
+
+@pytest.mark.parametrize("second_team", ["A", "C"])
+def test_player_game_totals_preserve_keys_and_weighting(second_team):
+    frame = raw().with_columns(
+        pl.when(pl.col("game_id") == "g2")
+        .then(pl.lit(second_team))
+        .otherwise(pl.col("posteam"))
+        .alias("posteam")
+    )
+    cohort, _ = cd.build_cohort(frame)
+    tables = cd.summarize(cohort)
+    games = tables["player_game_totals"].sort("game_id")
+
+    assert games.select(
+        "season", "season_type", "game_id", "team", "gsis_id"
+    ).rows() == [
+        (2026, "REG", "g1", "A", "p1"),
+        (2026, "REG", "g2", second_team, "p1"),
+    ]
+
+    assert games["eligible_dropbacks"].to_list() == [3, 1]
+    assert games["total_epa"].to_list() == [2.0, 0.0]
+    assert games["epa_per_eligible_dropback"].to_list() == pytest.approx([2 / 3, 0.0])
+    assert games["positive_epa_rate"].to_list() == pytest.approx([2 / 3, 0.0])
+    assert games["games_observed"].to_list() == [1, 1]
+
+    season = tables["player_totals"].row(0, named=True)
+
+    assert games["eligible_dropbacks"].sum() == season["eligible_dropbacks"]
+    assert games["total_epa"].sum() == pytest.approx(season["total_epa"])
+
+    weighted_rate = games["total_epa"].sum() / games["eligible_dropbacks"].sum()
+
+    assert weighted_rate == pytest.approx(season["epa_per_eligible_dropback"])
+    assert weighted_rate == pytest.approx(0.5)
+    assert games["epa_per_eligible_dropback"].mean() != pytest.approx(weighted_rate)

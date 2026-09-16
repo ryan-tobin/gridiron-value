@@ -86,7 +86,12 @@ def aggregate(frame, keys):
 
 def summarize(cohort):
     frame = labels(cohort)
-    tables = {}
+    tables = {
+        "player_game_totals": aggregate(
+            frame,
+            ["season", "season_type", "game_id", "posteam", "dropback_player_id"],
+        ).rename({"posteam": "team", "dropback_player_id": "gsis_id"}),
+    }
     for scope, entity in (("player", "dropback_player_id"), ("team", "posteam")):
         keys = ["season", "season_type", entity]
         tables[scope + "_totals"] = aggregate(frame, keys)
