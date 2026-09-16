@@ -1,3 +1,21 @@
 __pycache__/
 *.py[cod]
 *.egg-info/
+
+# Local Python environment and caches
+.venv/
+.pytest_cache/
+.ruff_cache/
+.ipynb_checkpoints/
+.DS_Store
+
+# Generated datasets
+data/raw/
+data/interim/
+data/processed/
+
+# Generated reports, player pages, and dashboards
+reports/
+
+# Temporary handoff archive
+/historical_context.zip

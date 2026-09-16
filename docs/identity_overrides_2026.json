@@ -1,0 +1,18 @@
+[
+  {
+    "season": 2026,
+    "game_id": "2026_01_DEN_KC",
+    "team": "KC",
+    "pfr_player_id": "WoodPe00",
+    "expected_candidates": ["00-0041545", "WOO547869"],
+    "resolved_gsis_id": "00-0041545",
+    "reason": "Select the current roster DL record for this KC snap record. The other source maps the same PFR ID to a historical QB with a different birth date.",
+    "evidence": {
+      "review_basis": "User-supplied diagnostic from preserved coverage and identity snapshots",
+      "identity_run": "20260915T232101264734Z",
+      "roster": {"full_name": "Peter Woods", "position": "DL", "birth_date": "2005-03-05", "gsis_id": "00-0041545"},
+      "registry": {"display_name": "Pete Woods", "position": "QB", "birth_date": "1955-11-29", "gsis_id": "WOO547869"},
+      "scope": "This exact snap record only; not a global correction of the PFR ID."
+    }
+  }
+]
