@@ -1,0 +1,118 @@
+{
+  "run_id": "20260916T020909123901Z",
+  "status": "completed",
+  "sources": {
+    "coverage": {
+      "path": "reports/tables/coverage_20260915T231229504521Z/coverage_manifest.json",
+      "sha256": "7f70ae051ba49ebb21cc22775cfad987466299c1813f005cbf0bbe9e21fa8bb7"
+    },
+    "historical_analysis": {
+      "path": "reports/tables/historical_analysis_20260915T220616093983Z/analysis_manifest.json",
+      "sha256": "0e80a2f2e1d0e76d69764de67f0ca668b278f3813e6bd180d2259a658e3e9bbb"
+    },
+    "chronological": {
+      "path": "reports/tables/chronological_20260915T222852538611Z/chronological_manifest.json",
+      "sha256": "1f757581d3cf2565cec4a4c150e782248ca59317ecb2ae6f70ef7d098b3e8147"
+    },
+    "identity": {
+      "path": "reports/tables/player_identity_20260915T234030577889Z/identity_manifest.json",
+      "sha256": "e0349a84e79a300fa4c9c32a2b05c84c6eae065dd0a787e3fe6e41c58e01c531"
+    },
+    "player_game": {
+      "path": "reports/tables/player_game_20260916T004308385374Z/player_game_manifest.json",
+      "sha256": "265e0d44bb3e8e12e3104682848c119c74a8128aae0411167eaec7384db475e8"
+    },
+    "participation": {
+      "path": "reports/tables/participation_20260916T010329368054Z/participation_manifest.json",
+      "sha256": "39815e638a068ac1f4c4d7a45b26c9c3b34b0c759d9f45b261654a9f8d991c86"
+    },
+    "position_metrics": {
+      "path": "reports/tables/position_metrics_20260916T011936835823Z/position_metrics_manifest.json",
+      "sha256": "e74863372de171a6c22b32ea6aec49a18746235781cdb85d5d849315bcabb9eb"
+    }
+  },
+  "files": {
+    "report": {
+      "path": "reports/tables/project_status_20260916T020909123901Z/report.md",
+      "sha256": "b72aea12c38b4da6e70a428e36e8e82640578c29487af12304a6ec329a8f993c"
+    },
+    "dashboard": {
+      "path": "reports/tables/project_status_20260916T020909123901Z/dashboard.html",
+      "sha256": "b128dd840d8a670e13b61089abce1ddd0404cfec3ea548fa2bc2458ca2a8cdec"
+    },
+    "milestones": {
+      "path": "reports/tables/project_status_20260916T020909123901Z/milestones.csv",
+      "sha256": "4500da9a425c7bf5e414392d37d6d6e5cc988ed5ca9b41cf07f9bae35f125e5f"
+    },
+    "coverage": {
+      "path": "reports/tables/project_status_20260916T020909123901Z/coverage_summary.csv",
+      "sha256": "7bf59a72d9ae88c2a46a2aef7eadf41e2d918c2ab770a69eee79b410d6cfc5ae"
+    },
+    "chronological": {
+      "path": "reports/tables/project_status_20260916T020909123901Z/chronological_validation.csv",
+      "sha256": "3165723fbdcf042377c63a530c574385bd434fc0cf94f8964e4331b0ddd39a9c"
+    }
+  },
+  "code": {
+    "path": "src/gridiron_value/project_status.py",
+    "sha256": "8ceda35db17507d3190cab37bd9b9ac5a87e349f350af8d94e74c2a0eae3cd8c"
+  },
+  "milestones": [
+    {
+      "stage": "historical_analysis",
+      "label": "Historical Pass+",
+      "status": "completed",
+      "rows": "992",
+      "detail": "2017\u20132025; 329 qualifying display rows at 200 dropbacks",
+      "manifest": "reports/tables/historical_analysis_20260915T220616093983Z/analysis_manifest.json"
+    },
+    {
+      "stage": "chronological",
+      "label": "Chronological validation",
+      "status": "completed",
+      "rows": "9",
+      "detail": "9 seasons; first test week 5",
+      "manifest": "reports/tables/chronological_20260915T222852538611Z/chronological_manifest.json"
+    },
+    {
+      "stage": "coverage",
+      "label": "Current-season coverage",
+      "status": "completed",
+      "rows": "10",
+      "detail": "10/10 feeds available for season 2026",
+      "manifest": "reports/tables/coverage_20260915T231229504521Z/coverage_manifest.json"
+    },
+    {
+      "stage": "identity",
+      "label": "Player identity",
+      "status": "needs_review",
+      "rows": "1492",
+      "detail": "1,489 resolved; 1 override; 2 unresolved",
+      "manifest": "reports/tables/player_identity_20260915T234030577889Z/identity_manifest.json"
+    },
+    {
+      "stage": "player_game",
+      "label": "Player-game joins",
+      "status": "completed",
+      "rows": "1117",
+      "detail": "1 unattributed stats; 378 unmatched resolved snaps",
+      "manifest": "reports/tables/player_game_20260916T004308385374Z/player_game_manifest.json"
+    },
+    {
+      "stage": "participation",
+      "label": "Participation",
+      "status": "completed",
+      "rows": "1490",
+      "detail": "1,490 resolved participants; 2 unresolved",
+      "manifest": "reports/tables/participation_20260916T010329368054Z/participation_manifest.json"
+    },
+    {
+      "stage": "position_metrics",
+      "label": "Position metrics",
+      "status": "completed",
+      "rows": "1117",
+      "detail": "QB/RB/WR/TE metric tables plus all-position output",
+      "manifest": "reports/tables/position_metrics_20260916T011936835823Z/position_metrics_manifest.json"
+    }
+  ]
+}

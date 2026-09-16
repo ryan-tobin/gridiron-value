@@ -1,0 +1,16 @@
+kind,name,status,rows,match_fraction,detail
+feed,pbp,available,2756,,
+feed,player_stats,available,1118,,
+feed,team_stats,available,32,,
+feed,rosters,available,2964,,
+feed,schedules,available,272,,
+feed,snap_counts,available,1492,,
+feed,ngs_passing,available,64,,
+feed,ngs_rushing,available,68,,
+feed,ngs_receiving,available,146,,
+feed,ftn_charting,available,2520,,
+identity,player_stats,evaluated,,1.0,1117/1117 distinct IDs matched
+identity,snap_counts,evaluated,,0.8022788203753352,1197/1492 distinct IDs matched
+identity,ngs_passing,evaluated,,1.0,32/32 distinct IDs matched
+identity,ngs_rushing,evaluated,,1.0,34/34 distinct IDs matched
+identity,ngs_receiving,evaluated,,1.0,73/73 distinct IDs matched

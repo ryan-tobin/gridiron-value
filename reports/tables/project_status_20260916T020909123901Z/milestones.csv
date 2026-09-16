@@ -1,0 +1,8 @@
+stage,label,status,rows,detail,manifest
+historical_analysis,Historical Pass+,completed,992,2017–2025; 329 qualifying display rows at 200 dropbacks,reports/tables/historical_analysis_20260915T220616093983Z/analysis_manifest.json
+chronological,Chronological validation,completed,9,9 seasons; first test week 5,reports/tables/chronological_20260915T222852538611Z/chronological_manifest.json
+coverage,Current-season coverage,completed,10,10/10 feeds available for season 2026,reports/tables/coverage_20260915T231229504521Z/coverage_manifest.json
+identity,Player identity,needs_review,1492,"1,489 resolved; 1 override; 2 unresolved",reports/tables/player_identity_20260915T234030577889Z/identity_manifest.json
+player_game,Player-game joins,completed,1117,1 unattributed stats; 378 unmatched resolved snaps,reports/tables/player_game_20260916T004308385374Z/player_game_manifest.json
+participation,Participation,completed,1490,"1,490 resolved participants; 2 unresolved",reports/tables/participation_20260916T010329368054Z/participation_manifest.json
+position_metrics,Position metrics,completed,1117,QB/RB/WR/TE metric tables plus all-position output,reports/tables/position_metrics_20260916T011936835823Z/position_metrics_manifest.json
