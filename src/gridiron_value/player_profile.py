@@ -11,6 +11,7 @@ from pathlib import Path
 import polars as pl
 
 from gridiron_value import historical as h
+from gridiron_value import profile_dropbacks as pd
 
 KEYS = ("season", "game_id", "team", "gsis_id")
 SNAPS = ("offense_snaps", "defense_snaps", "st_snaps")
@@ -124,7 +125,7 @@ NOTES = [
     "Summaries cover observed player-game rows in these snapshots, not certified full-season coverage.",
     "Partial sums and rates are labeled observed only; missing production and snaps are never zero-filled.",
     "NGS and share fields are shown per game only; their season aggregation weights are not established here.",
-    "Passing EPA is shown as supplied. EPA per pass attempt is omitted pending a numerator/denominator audit.",
+    "Passing EPA is shown as supplied. EPA per pass attempt is deprecated because its numerator and denominator use different play populations.",
     "Sack-rate proxy excludes scrambles. This profile does not calculate current-season Pass+ or peer percentiles.",
     "EPA retains teammate and scheme contributions. Snaps do not establish blocking or coverage quality.",
     "Unresolved snap identities and anonymous statistics cannot be assigned to a GSIS profile.",
@@ -438,6 +439,9 @@ def render_profile(profile, peer_html=None):
             if "defense" in groups
             else "<p>No efficiency metrics are implemented for the roles shown in this profile.</p>"
         )
+
+    body += pd.render_section(profile, table)
+
     body += "<h2>Game log</h2>" + table(
         [
             "Week",
@@ -522,7 +526,13 @@ def render_profile(profile, peer_html=None):
 
 
 def build(
-    root, metrics_path, participation_path, season, season_type="REG", gsis_id=None
+    root,
+    metrics_path,
+    participation_path,
+    season,
+    season_type="REG",
+    gsis_id=None,
+    dropbacks_path=None,
 ):
     root = Path(root).resolve()
     metrics_path, participation_path = (
@@ -551,6 +561,33 @@ def build(
     profiles = profiles_from_games(
         combine_games(**frames), season, season_type, gsis_id
     )
+
+    dropback_integration = None
+
+    if dropbacks_path is not None:
+        dropbacks_path = h.locate(root, dropbacks_path)
+
+        frame, lineage = pd.load(
+            root,
+            dropbacks_path,
+            metrics,
+            season,
+            season_type,
+        )
+
+        audit = pd.attach(profiles, frame, season, gsis_id)
+
+        print(
+            f"Dropback records matched: {audit['matched_rows']}/{audit['input_rows']}"
+        )
+        print(f"Unmatched dropback records: {len(audit['unmatched_rows'])}")
+
+        dropback_integration = {
+            **lineage,
+            "audit": audit,
+            "code_sha256": h.sha256(Path(pd.__file__)),
+        }
+
     run = datetime.now(UTC).strftime("%Y%m%dT%H%M%S%fZ")
     output = root / "reports" / "tables" / f"player_profiles_{run}"
     output.mkdir(parents=True, exist_ok=False)
@@ -597,6 +634,7 @@ document.querySelectorAll('#players li').forEach(row => { row.hidden = !row.text
             "source_position_metrics_manifest": h.record(root, metrics_path),
             "source_participation_manifest": h.record(root, participation_path),
             "consumed_files": consumed,
+            "dropback_integration": dropback_integration,
             "limitations": NOTES,
             "files": {p.name: h.record(root, p) for p in sorted(output.iterdir())},
             "code_sha256": h.sha256(Path(__file__)),
@@ -614,6 +652,7 @@ def main():
     parser.add_argument("--season-type", choices=("REG", "POST", "PRE"), default="REG")
     parser.add_argument("--gsis-id", help="Omit to generate the full player directory.")
     parser.add_argument("--project-root", type=Path, default=Path.cwd())
+    parser.add_argument("--current-dropbacks-manifest", type=Path)
     args = parser.parse_args()
     output = build(
         args.project_root,
@@ -622,6 +661,7 @@ def main():
         args.season,
         args.season_type,
         args.gsis_id,
+        dropbacks_path=args.current_dropbacks_manifest,
     )
     print(f"Player directory: {output / 'index.html'}")
     print(f"Manifest: {output / 'profile_manifest.json'}")
