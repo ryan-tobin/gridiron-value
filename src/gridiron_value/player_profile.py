@@ -13,46 +13,13 @@ import polars as pl
 from gridiron_value import historical as h
 from gridiron_value import profile_dropbacks as pd
 from gridiron_value import profile_situations as ps
+from gridiron_value import stat_catalog as sc
 
 KEYS = ("season", "game_id", "team", "gsis_id")
 SNAPS = ("offense_snaps", "defense_snaps", "st_snaps")
-GROUPS = {
-    "passing": (
-        "attempts",
-        "completions",
-        "passing_yards",
-        "passing_tds",
-        "passing_interceptions",
-        "sacks_suffered",
-        "passing_epa",
-    ),
-    "rushing": ("carries", "rushing_yards", "rushing_tds", "rushing_epa"),
-    "receiving": (
-        "targets",
-        "receptions",
-        "receiving_yards",
-        "receiving_tds",
-        "receiving_yards_after_catch",
-        "receiving_epa",
-    ),
-    "defense": (
-        "def_tackles_solo",
-        "def_tackle_assists",
-        "def_sacks",
-        "def_qb_hits",
-        "def_interceptions",
-        "def_pass_defended",
-    ),
-    "kicking": ("fg_att", "fg_made", "pat_att", "pat_made"),
-    "punting": ("pt_att", "pt_yards", "pt_net_yards"),
-    "returns": (
-        "punt_returns",
-        "punt_return_yards",
-        "kickoff_returns",
-        "kickoff_return_yards",
-    ),
-}
-COUNTS = tuple(c for group in GROUPS.values() for c in group)
+GROUPS = sc.GROUPS
+COUNTS = sc.COUNTS
+
 DEFENSIVE_POSITIONS = {
     "DE",
     "DT",
@@ -108,20 +75,9 @@ LABELS = {
     "pt_yards": "Punt yards",
     "pt_net_yards": "Net punt yards",
 }
-# Each rate is a ratio of additive source fields; never average game rates.
-RATES = {
-    "completion_rate": ("completions", ("attempts",)),
-    "pass_yards_per_attempt": ("passing_yards", ("attempts",)),
-    "passing_td_rate": ("passing_tds", ("attempts",)),
-    "interception_rate": ("passing_interceptions", ("attempts",)),
-    "sack_rate_proxy": ("sacks_suffered", ("attempts", "sacks_suffered")),
-    "rush_yards_per_carry": ("rushing_yards", ("carries",)),
-    "rush_epa_per_carry": ("rushing_epa", ("carries",)),
-    "catch_rate": ("receptions", ("targets",)),
-    "receiving_yards_per_target": ("receiving_yards", ("targets",)),
-    "receiving_epa_per_target": ("receiving_epa", ("targets",)),
-    "yac_per_reception": ("receiving_yards_after_catch", ("receptions",)),
-}
+LABELS.update(sc.LABELS)
+RATES = sc.RATES
+
 NOTES = [
     "Summaries cover observed player-game rows in these snapshots, not certified full-season coverage.",
     "Partial sums and rates are labeled observed only; missing production and snaps are never zero-filled.",
@@ -201,11 +157,17 @@ def combine_games(metrics, participation):
         )
         row.update({c: number(stat.get(c)) if stat else None for c in COUNTS})
         row.update({c: number(snap.get(c)) if snap else None for c in SNAPS})
-        # Keep rate/share/context fields at game grain, without reinterpreting weights.
         row["context"] = {
             c: number(value)
             for c, value in (stat or {}).items()
-            if c.startswith("ngs_") or c in ("target_share", "air_yards_share", "wopr")
+            if c.startswith("ngs_")
+            or c
+            in (
+                "target_share",
+                "air_yards_share",
+                "wopr",
+                *sc.GAME_CONTEXT,
+            )
         }
         games.append(row)
     return games
@@ -382,6 +344,33 @@ def production_table(profile, fields):
     )
 
 
+def production_game_logs(profile, groups):
+    body = ""
+
+    for group in groups:
+        fields = sc.GAME_LOGS.get(group)
+
+        if fields is None:
+            continue
+
+        body += f"<h3>{label(group)} game log</h3>"
+        body += table(
+            ["Week", "Game", "Team", "Opponent", *(label(c) for c in fields)],
+            [
+                (
+                    game["week"],
+                    game["game_id"],
+                    game["team"],
+                    game["opponent"],
+                    *(game.get(c) for c in fields),
+                )
+                for game in profile["games"]
+            ],
+        )
+
+    return body
+
+
 def render_profile(profile, peer_html=None):
     groups = profile_groups(profile)
     visible_fields = {field for group in groups for field in GROUPS[group]}
@@ -467,6 +456,9 @@ def render_profile(profile, peer_html=None):
             for g in profile["games"]
         ],
     )
+
+    body += production_game_logs(profile, groups)
+
     for game in profile["games"]:
         body += (
             "<details><summary>"
@@ -608,8 +600,12 @@ def build(
             + ".html"
         )
         (output / filename).write_text(render_profile(profile), encoding="utf-8")
-        label = f"{profile['name']} · {profile['gsis_id']} · {', '.join(profile['teams'])} · {', '.join(profile['positions'])}"
-        links.append(f'<li><a href="{filename}">{html.escape(label)}</a></li>')
+        link_label = (
+            f"{profile['name']} · {profile['gsis_id']} · "
+            f"{', '.join(profile['teams'])} · "
+            f"{', '.join(profile['positions'])}"
+        )
+        links.append(f'<li><a href="{filename}">{html.escape(link_label)}</a></li>')
     index = f"<h1>Player profiles · {season} {season_type}</h1><p>{len(profiles):,} players in the supplied snapshots.</p>"
     index += (
         '<label for="query">Find a player, ID, team, or position</label><br><input id="query" type="search"><ul id="players">'
@@ -622,6 +618,15 @@ document.querySelectorAll('#players li').forEach(row => { row.hidden = !row.text
 });</script>"""
     (output / "index.html").write_text(
         page("Player directory", index), encoding="utf-8"
+    )
+    h.save_json(
+        output / "stat_catalog.json",
+        {
+            **sc.contract(),
+            "labels": {
+                field: label(field) for field in (*COUNTS, *RATES, *sc.GAME_CONTEXT)
+            },
+        },
     )
     h.save_json(
         output / "profiles.json",
@@ -644,6 +649,13 @@ document.querySelectorAll('#players li').forEach(row => { row.hidden = !row.text
             "source_participation_manifest": h.record(root, participation_path),
             "consumed_files": consumed,
             "dropback_integration": dropback_integration,
+            "stat_catalog": {
+                "version": sc.VERSION,
+                "code_sha256": h.sha256(Path(sc.__file__)),
+                "missing_source_fields": sorted(
+                    {*COUNTS, *sc.GAME_CONTEXT} - set(frames["metrics"].columns)
+                ),
+            },
             "limitations": NOTES,
             "files": {p.name: h.record(root, p) for p in sorted(output.iterdir())},
             "code_sha256": h.sha256(Path(__file__)),

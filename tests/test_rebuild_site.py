@@ -26,7 +26,11 @@ def test_build_links_verified_outputs_from_one_profile_run(pipeline):
 
     profile = state["stage_manifests"]["profiles"]
 
-    for key in ("dropback_leaderboard", "position_leaderboards"):
+    for key in (
+        "dropback_leaderboard",
+        "position_leaderboards",
+        "counting_leaderboards",
+    ):
         stage = h.verify_manifest(
             pipeline,
             state["stage_manifests"][key],
@@ -37,6 +41,7 @@ def test_build_links_verified_outputs_from_one_profile_run(pipeline):
         h.verify(pipeline, record)
 
     assert (output / "index.html").exists()
+    assert "Counting-stat leaderboards" in (output / "index.html").read_text()
 
 
 def test_invalid_input_does_not_publish_landing_page(pipeline):

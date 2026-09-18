@@ -6,6 +6,7 @@ import os
 from datetime import UTC, datetime
 from pathlib import Path
 
+from gridiron_value import counting_leaderboards as cb
 from gridiron_value import dropback_leaderboard as db
 from gridiron_value import historical as h
 from gridiron_value import leaderboards as lb
@@ -145,6 +146,9 @@ def build(
         "REG",
     )
 
+    print("Building counting-stat leaderboards...")
+    counting_output = cb.build(root, profile_manifest, season, "REG")
+
     manifests = {
         "profiles": h.record(root, profile_manifest),
         "dropback_leaderboard": h.record(
@@ -154,6 +158,10 @@ def build(
         "position_leaderboards": h.record(
             root,
             position_output / "leaderboard_manifest.json",
+        ),
+        "counting_leaderboards": h.record(
+            root,
+            counting_output / "counting_leaderboard_manifest.json",
         ),
     }
 
@@ -179,6 +187,7 @@ def build(
         "Player directory": position_output / "index.html",
         "Position leaderboards": position_output / "leaderboards.html",
         "Eligible-dropback leaderboard": dropback_output / "index.html",
+        "Counting-stat leaderboards": counting_output / "index.html",
     }
 
     pages = {name: h.record(root, path) for name, path in destinations.items()}
@@ -231,6 +240,9 @@ def build(
                 "index.html": h.record(root, index),
             },
             "code_sha256": h.sha256(Path(__file__)),
+            "counting_leaderboards": h.record(
+                root, counting_output / "counting_leaderboard_manifest.json"
+            ),
         },
     )
 
