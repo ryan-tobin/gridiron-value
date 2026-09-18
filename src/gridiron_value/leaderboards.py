@@ -11,6 +11,7 @@ from pathlib import Path
 
 from gridiron_value import historical as h
 from gridiron_value import player_profile as pp
+from gridiron_value import profile_dropbacks as pd
 
 DEFAULTS = {
     "attempts": 20,
@@ -230,6 +231,9 @@ def load_profiles(root, manifest, season, season_type):
             raise ValueError(
                 "Profile rates disagree with the underlying game observations."
             )
+
+    pd.validate(profiles, season)
+
     return profiles, record
 
 

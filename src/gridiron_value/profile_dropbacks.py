@@ -19,15 +19,11 @@ def load(root, path, metrics, season, season_type):
     if state.get("season") != season:
         raise ValueError("Dropback manifest season mismatch.")
 
-    player_game = h.read_json(
-        h.verify(root, metrics["source_player_game_manifest"])
-    )
+    player_game = h.read_json(h.verify(root, metrics["source_player_game_manifest"]))
     coverage_record = player_game["source_coverage_manifest"]
 
     if state["source_coverage_manifest"] != coverage_record:
-        raise ValueError(
-            "Dropbacks and profiles use different coverage snapshots."
-        )
+        raise ValueError("Dropbacks and profiles use different coverage snapshots.")
 
     coverage = h.read_json(h.verify(root, coverage_record))
 
@@ -79,14 +75,10 @@ def indexed(frame, season):
         values = [row[field] for field in FIELDS]
 
         if any(
-            value is None
-            or isinstance(value, bool)
-            or not math.isfinite(float(value))
+            value is None or isinstance(value, bool) or not math.isfinite(float(value))
             for value in values
         ):
-            raise ValueError(
-                "Dropback values must be finite and nonmissing."
-            )
+            raise ValueError("Dropback values must be finite and nonmissing.")
 
         count, total, rate = map(float, values)
 
@@ -99,9 +91,7 @@ def indexed(frame, season):
             rel_tol=1e-9,
             abs_tol=1e-12,
         ):
-            raise ValueError(
-                "Dropback rate disagrees with its numerator/denominator."
-            )
+            raise ValueError("Dropback rate disagrees with its numerator/denominator.")
 
         result[key] = dict(zip(KEYS, key, strict=True)) | {
             "eligible_dropbacks": int(count),
@@ -116,11 +106,7 @@ def attach(profiles, frame, season, gsis_id=None):
     records = indexed(frame, season)
 
     if gsis_id is not None:
-        records = {
-            key: row
-            for key, row in records.items()
-            if key[-1] == gsis_id
-        }
+        records = {key: row for key, row in records.items() if key[-1] == gsis_id}
 
     matched, seen = set(), set()
 
@@ -137,9 +123,7 @@ def attach(profiles, frame, season, gsis_id=None):
             record = records.get(key)
 
             game["dropbacks"] = (
-                {field: record[field] for field in FIELDS}
-                if record
-                else None
+                {field: record[field] for field in FIELDS} if record else None
             )
 
             if record:
@@ -161,10 +145,7 @@ def attach(profiles, frame, season, gsis_id=None):
         "gsis_id_filter": gsis_id,
         "input_rows": len(records),
         "matched_rows": len(matched),
-        "unmatched_rows": [
-            records[key]
-            for key in sorted(records.keys() - matched)
-        ],
+        "unmatched_rows": [records[key] for key in sorted(records.keys() - matched)],
         "missing_rows_are_zero": False,
     }
 
@@ -225,3 +206,55 @@ def render_section(profile, table):
         ],
         rows,
     )
+
+
+def validate(profiles, season):
+    from copy import deepcopy
+
+    present = any(
+        "dropbacks" in profile or any("dropbacks" in game for game in profile["games"])
+        for profile in profiles
+    )
+
+    if not present:
+        return False
+
+    records = []
+
+    for profile in profiles:
+        if "dropbacks" not in profile:
+            raise ValueError("Incomplete dropback profile extension")
+
+        for game in profile["games"]:
+            if "dropbacks" not in game:
+                raise ValueError("Missing game-level dropback extension")
+
+            values = game["dropbacks"]
+
+            if values is not None:
+                if not isinstance(values, dict) or set(values) != set(FIELDS):
+                    raise ValueError("Invalid game-level dropback fields.")
+
+                records.append({**{key: game[key] for key in KEYS}, **values})
+
+    schema = {
+        "season": pl.Int64,
+        "season_type": pl.String,
+        "game_id": pl.String,
+        "team": pl.String,
+        "gsis_id": pl.String,
+        "eligible_dropbacks": pl.Float64,
+        "total_epa": pl.Float64,
+        "epa_per_eligible_dropback": pl.Float64,
+    }
+
+    frame = pl.DataFrame(records) if records else pl.DataFrame(schema=schema)
+
+    expected = deepcopy(profiles)
+    attach(expected, frame, season)
+
+    for actual, rebuilt in zip(profiles, expected, strict=True):
+        if actual["dropbacks"] != rebuilt["dropbacks"]:
+            raise ValueError("Dropback summary disagrees with game observatrions.")
+
+    return True
