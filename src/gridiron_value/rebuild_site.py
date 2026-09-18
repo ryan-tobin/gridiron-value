@@ -12,6 +12,83 @@ from gridiron_value import leaderboards as lb
 from gridiron_value import player_profile as pp
 
 
+def summarize_coverage(profiles, source):
+    games = [game for profile in profiles for game in profile["games"]]
+
+    return {
+        "profile_weeks": sorted({game["week"] for game in games}),
+        "profile_games": len({game["game_id"] for game in games}),
+        "player_profiles": len(profiles),
+        "matched_dropback_players": sum(
+            profile["dropbacks"]["matched_games"] > 0 for profile in profiles
+        ),
+        "matched_dropbacks": sum(
+            profile["dropbacks"]["eligible_dropbacks"] or 0 for profile in profiles
+        ),
+        "source_dropback_weeks": source.get("observed_weeks"),
+        "source_dropback_games": source.get("games_observed"),
+        "source_dropbacks": source.get("rows"),
+        "pbp_retrieved_at": source.get("source_retrieved_at"),
+    }
+
+
+def render_coverage(coverage):
+    def weeks(values):
+        if values is None:
+            return "Unavailable"
+
+        return ", ".join(map(str, values)) if values else "None observed"
+
+    body = "<h2>Snapshot coverage</h2>"
+
+    body += pp.table(
+        ["Population", "Observed weeks", "Games represented"],
+        [
+            (
+                "Player profiles",
+                weeks(coverage["profile_weeks"]),
+                coverage["profile_games"],
+            ),
+            (
+                "Eligible-dropback source",
+                weeks(coverage["source_dropback_weeks"]),
+                coverage["source_dropback_games"],
+            ),
+        ],
+    )
+
+    body += pp.table(
+        ["Measure", "Value"],
+        [
+            ("Player profiles", coverage["player_profiles"]),
+            (
+                "Players with matched dropbacks",
+                coverage["matched_dropback_players"],
+            ),
+            (
+                "Dropbacks matched to profiles",
+                coverage["matched_dropbacks"],
+            ),
+            (
+                "Eligible dropbacks in source",
+                coverage["source_dropbacks"],
+            ),
+            (
+                "PBP retrieval time (as recorded)",
+                coverage["pbp_retrieved_at"],
+            ),
+        ],
+    )
+
+    return body + (
+        "<p>These counts describe the supplied snapshots. A represented game "
+        "or week does not establish complete play coverage. Player profiles "
+        "and eligible dropbacks can cover different sets of games. The PBP "
+        "retrieval time is separate from the site rebuild time and does not "
+        "describe when every other feed was retrieved.</p>"
+    )
+
+
 def build(
     root,
     metrics,
@@ -23,10 +100,7 @@ def build(
 ):
     root = Path(root).resolve()
 
-    if any(
-        type(value) is not int or value < 1
-        for value in (min_dropbacks, min_games)
-    ):
+    if any(type(value) is not int or value < 1 for value in (min_dropbacks, min_games)):
         raise ValueError("Display thresholds must be positive integers.")
 
     paths = {
@@ -38,10 +112,7 @@ def build(
         )
     }
 
-    inputs = {
-        name: h.record(root, path)
-        for name, path in paths.items()
-    }
+    inputs = {name: h.record(root, path) for name, path in paths.items()}
 
     print("Building player profiles...")
 
@@ -92,6 +163,15 @@ def build(
     for record in inputs.values():
         h.verify(root, record)
 
+    profile_state = h.read_json(profile_manifest)
+
+    payload = h.read_json(h.verify(root, profile_state["files"]["profiles.json"]))
+
+    coverage = summarize_coverage(
+        payload["profiles"],
+        h.read_json(paths["current_dropbacks"]),
+    )
+
     run = datetime.now(UTC).strftime("%Y%m%dT%H%M%S%fZ")
     output = root / "reports" / "tables" / f"site_build_{run}"
 
@@ -101,13 +181,12 @@ def build(
         "Eligible-dropback leaderboard": dropback_output / "index.html",
     }
 
-    pages = {
-        name: h.record(root, path)
-        for name, path in destinations.items()
-    }
+    pages = {name: h.record(root, path) for name, path in destinations.items()}
 
     body = f"<h1>Gridiron Value · {season} REG</h1>"
     body += "<p>Observed production from the supplied snapshots.</p><ul>"
+    body += render_coverage(coverage)
+    body += "<h2>Explore</h2><ul>"
 
     for title, path in destinations.items():
         href = html.escape(
@@ -143,6 +222,7 @@ def build(
             "inputs": inputs,
             "stage_manifests": manifests,
             "linked_pages": pages,
+            "coverage": coverage,
             "display_thresholds": {
                 "min_dropbacks": min_dropbacks,
                 "min_games": min_games,
