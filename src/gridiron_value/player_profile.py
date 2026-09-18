@@ -12,6 +12,7 @@ import polars as pl
 
 from gridiron_value import historical as h
 from gridiron_value import profile_dropbacks as pd
+from gridiron_value import profile_situations as ps
 
 KEYS = ("season", "game_id", "team", "gsis_id")
 SNAPS = ("offense_snaps", "defense_snaps", "st_snaps")
@@ -441,6 +442,7 @@ def render_profile(profile, peer_html=None):
         )
 
     body += pd.render_section(profile, table)
+    body += ps.render_section(profile, table)
 
     body += "<h2>Game log</h2>" + table(
         [
@@ -576,6 +578,12 @@ def build(
         )
 
         audit = pd.attach(profiles, frame, season, gsis_id)
+        situations = ps.load_and_attach(
+            root,
+            dropbacks_path,
+            profiles,
+            season,
+        )
 
         print(
             f"Dropback records matched: {audit['matched_rows']}/{audit['input_rows']}"
@@ -585,6 +593,7 @@ def build(
         dropback_integration = {
             **lineage,
             "audit": audit,
+            "situations": situations,
             "code_sha256": h.sha256(Path(pd.__file__)),
         }
 

@@ -115,6 +115,24 @@ def pipeline(tmp_path):
 
     totals().write_csv(root / "totals.csv")
 
+    plays = []
+
+    for row in totals().to_dicts():
+        for play_id in range(row["eligible_dropbacks"]):
+            plays.append(
+                {
+                    "season": row["season"],
+                    "season_type": row["season_type"],
+                    "game_id": row["game_id"],
+                    "play_id": play_id,
+                    "posteam": row["team"],
+                    "dropback_player_id": row["gsis_id"],
+                    "epa": row["epa_per_eligible_dropback"],
+                }
+            )
+
+    pl.DataFrame(plays).write_parquet(root / "cohort.parquet")
+
     # This adapter compares the stored PBP reference; it consumes the CSV.
     snapshot = {
         "path": "pbp.parquet",
@@ -163,7 +181,10 @@ def pipeline(tmp_path):
             "season_type": "REG",
             "source_coverage_manifest": coverage,
             "source_snapshot": snapshot,
-            "files": {"player_game_totals": h.record(root, root / "totals.csv")},
+            "files": {
+                "player_game_totals": h.record(root, root / "totals.csv"),
+                "cohort": h.record(root, root / "cohort.parquet"),
+            },
         },
     )
 
